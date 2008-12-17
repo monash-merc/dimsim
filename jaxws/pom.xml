@@ -1,0 +1,163 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.instrumentmiddleware.cima</groupId>
+	<artifactId>jaxws</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0</version>
+	<name>jaxws</name>
+	<url>http://maven.apache.org</url>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>apache-plugin-snapshots</id>
+			<name>Apache Maven Plugin Snapshots</name>
+			<url>http://people.apache.org/repo/m2-snapshot-repository</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>apache-plugin-incubating</id>
+			<name>Apache Plugin Incubating Repository</name>
+			<url>
+				http://people.apache.org/repo/m2-incubating-repository/
+			</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<repositories>
+		<repository>
+			<id>archer</id>
+			<url>http://dev.archer.edu.au/maven</url>
+		</repository>
+		<repository>
+			<id>archer-snapshots</id>
+			<url>http://dev.archer.edu.au/archer-snapshots</url>
+		</repository>
+		<repository>
+			<id>apache.incubating.releases</id>
+			<name>Apache Incubating Release Distribution Repository</name>
+			<url>
+				http://people.apache.org/repo/m2-incubating-repository
+			</url>
+		</repository>
+		<repository>
+			<id>java.net</id>
+			<url>http://download.java.net/maven/1/</url>
+			<layout>legacy</layout>
+		</repository>
+	</repositories>
+
+	<properties>
+		<cxf.version>2.0.4-incubator</cxf.version>
+		<log4j.version>1.2.15</log4j.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>${pom.groupId}</groupId>
+			<artifactId>core</artifactId>
+			<version>0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jalopy-maven-plugin</artifactId>
+				<version>1.0-alpha-1</version>
+				<configuration>
+					<convention>src/main/resources/jalopy.xml</convention>
+				</configuration>
+			</plugin>
+			<plugin>
+				 <artifactId>maven-source-plugin</artifactId>
+				 <executions>
+						<execution>
+							<phase>verify</phase>
+							<goals>
+								 <goal>jar</goal>
+							</goals>
+						</execution>
+				 </executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-codegen-plugin</artifactId>
+				<version>${cxf.version}</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<configuration>
+							<sourceRoot>
+								${basedir}/target/generated/src/main/java
+							</sourceRoot>
+							<wsdlOptions>
+								<wsdlOption>
+									<wsdl>
+										${basedir}/src/wsdl/cima.wsdl
+									</wsdl>
+								</wsdlOption>
+							</wsdlOptions>
+						</configuration>
+						<goals>
+							<goal>wsdl2java</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<distributionManagement>
+		<site>
+			<id>archer</id>
+			<name>Deployment Server</name>
+			<url>scp://dev.archer.edu.au/var/www/html/sites/CIMA/${pom.artifactId}</url>
+		</site>
+		<repository>
+			<id>archer</id>
+			<name>Deployment Server</name>
+			<url>scp://dev.archer.edu.au/var/www/html/maven</url>
+		</repository>
+		<snapshotRepository>
+			<id>archer</id>
+			<name>Deployment Server</name>
+			<url>scp://dev.archer.edu.au/var/www/html/archer-snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+</project>

@@ -1,0 +1,16 @@
+1. run mvn install to install the jar file in local repository, 
+  or run 'mvn package' to create a jar package and copy it into servlet container's lib directory.
+
+2. check resources/dimsimPlugins.xml file to create a new plugins.xml file
+
+To use plugins defined in this package:
+
+3. download client_webapp branch and setup as per README file for that branch.
+
+4. Link the plugins.xml file created in step 2 to the resources dir of the webapp code
+
+5. run mvn clean and then mvn package in the webapp branch
+
+6. start jetty webserver as per the README in webapp code  or
+   copy the generated war file to servlet containers webapp dir.
+

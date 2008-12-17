@@ -1,0 +1,8 @@
+package org.instrumentmiddleware.cima.transport.impl defines SOAP Transport for CIMA.
+
+File jaxws/src/main/resources/cxf-servlet.xml has a default hardcoded value for variable cima.soap.localEndpointUrl. You should be able to modify this variable by adding the following to  file src/main/resources/cima-webservice.properties in your codebase that uses SOAP trasnport defined here. 
+        cima.soap.localEndpointUrl=http://f.q.d.n:port/<SERVLET_CONTEXT>/ws/cima
+ where 1. f.q.d.n:port refers to the URL of your Servlet/SOAP container
+       2. <SERVLET_CONTEXT> refers to the location your application is deployed.
+
+If this does not work, you can always modify the cxf-servlet.xml file and regenerate the jaxws jar file for each new CIMA instance.

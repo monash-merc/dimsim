@@ -1,0 +1,40 @@
+<html>
+<head>
+ <title>DIMSIM Portal (Monash Crystallography monitor)</title>
+ <!-- Ext CSS and Libs -->
+ <link href="{{ MEDIA_URL }}/css/ext-all.css" type="text/css" rel="stylesheet"/>
+ <link href="{{ MEDIA_URL }}/css/portal.css" type="text/css" rel="stylesheet"/>
+ <script type="text/javascript" src="{{ MEDIA_URL }}/js/extjs/ext-base.js"></script>
+ <script type="text/javascript" src="{{ MEDIA_URL }}/js/extjs/ext-all.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}/js/portal.js"></script>
+ <script type="text/javascript" src="{{ MEDIA_URL }}/js/extjs/Portal.js"></script>
+ <script type="text/javascript" src="{{ MEDIA_URL }}/js/extjs/PortalColumn.js"></script>
+ <script type="text/javascript" src="{{ MEDIA_URL }}/js/extjs/Portlet.js"></script>
+ <script type="text/javascript">
+	//<![CDATA[
+	var imagePortlets = [ {% for cam in webcams %}{name:'{{cam.name}}', url:'{{cam.url}}', refresh:{{cam.refresh_time}} },{% endfor %} ];
+	//alert(webcams["remove"])
+	Ext.onReady(function(){
+		portal = new PortalPage({
+			webcams: imagePortlets,
+			sensorData: '{% url sensors_data %}',
+			currSensor: '{% url sensors_curr %}',
+			projInfo: '{% url proj_info %}',
+			captureImageUrl: '{% url latest_image %}',
+		});
+	});
+	//]]>
+ </script>
+</head>
+<body>
+ <div id="header">
+  <h1><font size=+3>Monash Crystallography monitor</font></h1>
+  <!--img alt="Concurrant Data Capture &amp; Analysis" src="{{ MEDIA_URL }}/images/cdca-logo.png" /-->
+ </div> 
+ <div id="footer"><div class="copyright">
+  Maintained by <A href="mailto:rafi.feroze@jcu.edu.au">Rafi M Feroze </A><BR>
+  Copyright © 1995 to 2008, James Cook University. All rights reserved.<br/>
+  <a href="http://www.jcu.edu.au/top/jcuprd_013723.html">Terms of use</a> | <a href="http://www.jcu.edu.au/privacy/">Privacy statement</a>
+ </div>
+</body>
+</html>

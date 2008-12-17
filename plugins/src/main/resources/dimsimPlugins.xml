@@ -1,0 +1,261 @@
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<!-- Buffer Setup -->
+	<bean
+		id="bufferManager"		
+		class="au.edu.archer.dimsim.buffer.impl.manager.MemoryBufferManager"
+		scope="singleton">
+	</bean> 	<!-- default buffer in MemoryBufferManager is set to RingBuffer -->
+	<bean
+		id="deliveryBuffer"
+		class="au.edu.archer.dimsim.buffer.impl.ListDeliveryBuffer"
+		scope="singleton">		
+		<constructor-arg ref="bufferManager"/>
+		<constructor-arg type="int" value="87"/>				
+	</bean>
+	<bean
+		id="ParcelBufferedEventListener"
+		class="au.edu.archer.dimsim.buffer.eventListener.ParcelBufferedEventListener"
+		scope="singleton">		
+	</bean>
+	
+
+	<bean 
+		id="director" 
+		class="org.instrumentmiddleware.cima.core.impl.DimsimCIMADirector"
+		scope="singleton">
+		<constructor-arg ref="pluginController"/>
+		<constructor-arg ref="subscriptionController"/>
+	        <constructor-arg ref="descriptionController"/>
+		<constructor-arg ref="pluginManager"/>
+		<constructor-arg ref="sessionManager"/>
+		<constructor-arg ref="transportManager"/>
+		<constructor-arg ref="transportManager"/>
+		<property name="validating" value="true"/>
+		<property name="isBuffered" value="true"/>
+		<property name="deliveryBuffer" ref="deliveryBuffer"/>
+		<!-- property name="security" ref="endpointSecurity"/ -->
+	</bean>	
+
+	<!-- bean
+		id="endPointSecurity"
+		class="au.edu.archer.dimsim.security.impl.EndpointSubscriptionSecurityModel"
+		scope="singleton">		
+		<constructor-arg type="int" value="87"/>
+		<property name="consumerProperties">
+		<set>			
+			<set>
+				<value>consumerID</value>
+				<value>endPointURL</value>
+				<value>pluginID</value>
+			</set>			
+			<!-- The following allows any cima client to subscribe and get data from LabJack & BufferList Plug-ins -->
+            <set> <value>*</value><value>*</value><value>Labjack_Plugin</value> </set>            
+            <set> <value>*</value><value>*</value><value>RigakuJPGMultiUser</value> </set>
+		</set>
+		</property>				
+	</bean -->
+	
+	<!-- Strategy -->
+	<bean id="TooBadDeliveryStrategyClass" class="java.lang.Class" factory-method="forName">
+		<constructor-arg>
+			<value>org.instrumentmiddleware.cima.transport.delivery.impl.TooBadDeliveryStrategy</value>
+		</constructor-arg>
+	</bean>
+
+	<!-- parcel creators -->	
+	<bean
+		id="RigakuParcelCreator"
+		class="au.edu.archer.dimsim.plugins.parcelcreators.RigakuParcelCreator"
+		scope="prototype">	
+		<constructor-arg type="java.lang.String" value="id"/>			
+	</bean>
+	<bean
+		id="RigakuJPGParcelCreator"
+		class="au.edu.archer.dimsim.plugins.parcelcreators.RigakuJPGBufferedSourceParcelCreator"
+		scope="prototype">				
+		<constructor-arg ref="ParcelBufferedEventListener"/>
+		<property name="standAloneMode" value="false"/>
+	</bean>	
+	
+	<!-- plugins -->
+	<bean
+		id="basicProducer"
+		abstract="true">
+		<constructor-arg ref="director"/>
+	</bean>
+	
+	<!-- Buffer plugin -->
+	<!-- Make Sure the delivery Strategy does not re-Buffer -->
+	<bean
+		id="bufferPlugin"
+		class="au.edu.archer.dimsim.buffer.plugin.impl.ListBufferPlugin"
+		scope="singleton"
+		parent="basicProducer">				
+		<constructor-arg type="java.lang.String" value="CimaBuffer_Plugin"/>			
+		<constructor-arg ref="deliveryBuffer"/>	
+		<property name="deliveryStrategy" ref="TooBadDeliveryStrategyClass"/>	
+		<!--property name="bufferSecurity" ref="endPointSecurity"/ -->		
+	</bean>
+	
+	<!-- Rigaku Plug-ins -->
+	<bean
+		id="adminDBMonitor"
+		class="au.edu.archer.dimsim.CrystalClear.AdminDBMonitor"
+		scope="singleton">						
+		<constructor-arg type="java.lang.String" value="/CrystalClear/Administration/AdminDatabase_140.xml"/>
+		<property name="listenerset">
+		<!-- Spring does not work with upper case property names for collections -->   
+			<set>
+				<ref bean="RigakuMultiUserPlugin"/>				
+			</set>
+		</property>						
+	</bean>
+	
+	<!-- Use RigakuSCPPlugin if configuring user plugins individually, for automatic user based 
+	     plugin configuration use RigakuMultiUserPlugin instead --> 
+	<!-- bean
+		id="RigakuSCPPlugin"
+		class="au.edu.archer.dimsim.plugins.RigakuSCPPlugin"
+		scope="singleton"
+		parent="basicProducer">		
+		<constructor-arg ref="RigakuParcelCreator"/>		
+		<constructor-arg index="2" type="java.lang.String" value="Rigaku_Plugin"/>						
+		<property name="dirmap">  
+		<!-- Spring does not work with upper case property names for collections -->   
+			<map>
+				<entry key="Z:" value="/hires2"/>				
+				<entry key="Y:" value="/maxscreen"/>
+				<entry key="V:" value="/chromium"/>
+			</map>
+		</property>		
+		<property name="replacemap">
+			<map>
+				<entry key="\" value="/"/>				
+			</map>
+		</property>			
+		<property name="deliveryStrategy" ref="TooBadDeliveryStrategyClass"/>
+		<property name="scpFileName" value="/<user_script_dir>/SessionScript.scp"/>		
+	</bean -->	
+	<bean
+		id="RigakuMultiUserPlugin"
+		class="au.edu.archer.dimsim.plugins.RigakuSCPMultiUser"
+		scope="singleton"
+		parent="basicProducer">				
+		<constructor-arg type="java.lang.String" value="Rigaku_Plugin"/>						
+		<property name="dirmap">  
+		<!-- Spring does not work with upper case property names for collections -->   
+			<map>
+				<entry key="Z:" value="/hires2"/>				
+				<entry key="Y:" value="/maxscreen"/>
+				<entry key="V:" value="/chromium"/>
+			</map>
+		</property>		
+		<property name="replacemap">
+			<map>
+				<entry key="\" value="/"/>				
+			</map>
+		</property>			
+		<property name="deliveryStrategy" ref="TooBadDeliveryStrategyClass"/>				
+		<property name="startOnLoad" value="true"/>
+	</bean>	
+	
+	<bean
+                id="RigakuJPGMultiUser"
+                class="au.edu.archer.dimsim.plugins.RigakuJPGMultiUser"
+                scope="singleton"
+                parent="basicProducer">
+                <constructor-arg ref="RigakuSCPMultiUser"/>
+                <constructor-arg type="java.lang.String" value="RigakuJPG"/>
+                <property name="deliveryStrategy" ref="TooBadDeliveryStrategyClass"/>
+                <property name="factory">
+                    <bean
+                        class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
+                        <property name="targetBeanName">
+                            <idref local="RigakuJPGParcelCreator" />
+                        </property>
+                    </bean>
+                </property>
+                <property name="startOnLoad" value="true"/>
+                <property name="standAloneMode" value="true"/>
+    </bean>
+		
+	<!-- bean
+		id="RigakuJPGlugin"
+		class="au.edu.archer.dimsim.plugins.RigakuJPGPlugin"
+		scope="singleton"
+		parent="basicProducer">		
+		<constructor-arg ref="RigakuSCPPlugin"/>		
+		<constructor-arg type="java.lang.String" value="RigakuJPG_Plugin"/>	
+		<property name="deliveryStrategy" ref="TooBadDeliveryStrategyClass"/>			
+	</bean -->
+	
+	
+	<!-- LabJack Plugin -->
+	 <bean
+                id="nullParcelCreator"
+                class="au.edu.archer.dimsim.plugins.parcelcreators.NullParcelCreator"
+                scope="prototype">
+        </bean>
+
+	<!-- bean
+		id="labjackPlugin"
+		class="au.edu.usyd.cima.plugin.labjack.LabjackPlugin"
+		scope="singleton"
+		parent="basicProducer">		
+		<constructor-arg ref="nullParcelCreator"/>
+		<constructor-arg type="long" value="30"/>
+		<constructor-arg type="java.lang.String" value="Labjack_Plugin"/>
+		<property name="deliveryStrategy" ref="TooBadDeliveryStrategyClass"/>		
+	</bean -->	
+	
+	<!-- Consumer Plugins  -->
+	<bean
+		id="echoConsumer"
+		class="au.edu.archer.dimsim.plugins.consumer.EchoConsumer"
+		scope="prototype">
+		<constructor-arg type="java.lang.String" value="EchoConsumer"/>
+	</bean>	
+
+	<bean
+                id="bufferConsumer"
+                class="au.edu.archer.dimsim.plugins.consumer.BufferProbeConsumer"
+                scope="singleton"
+                parent="basicProducer">                
+                <constructor-arg type="long" value="1000"/>
+                <constructor-arg index="0" type="java.lang.String" value="BufferConsumer"/>
+                <property name="deliveryStrategy" ref="TooBadDeliveryStrategyClass"/>
+     </bean>
+	
+	<!-- SRB Plugins -->
+	<bean
+		id="srbConsumer"
+		class="au.edu.archer.dimsim.plugins.srb.CrystalSRBConsumer"
+		scope="prototype">
+		<constructor-arg type="java.lang.String" value="SrbConsumer"/>
+	    <constructor-arg ref="srbConfig"/>	    
+	    <property name="remoteBufferPluginID" value="Buffer_Plugin"/>
+        <!--property name="subscription" ref="srbSubscribe"/ -->
+        <property name="startOnLoad" value="true"/>
+        <property name="errorConfig" ref="srbConfig"/>
+	</bean>
+	
+       <bean
+        id="srbConfig"
+        class="au.edu.archer.dimsim.plugins.srb.SRBConfig"
+        scope="prototype">
+        <property name="srbHost" value="<your host>"/>
+        <!--property name="srbPort" value="5544"/-->
+        <property name="srbUsername" value="<userid>"/>
+        <property name="srbPassword" value="<passwd>"/>
+        <property name="srbMDASDomain" value="<domain>"/>
+        <property name="srbMDASZone" value="<zone>"/>
+        <property name="srbDefaultResource" value="<resource>"/>
+        <!--property name="srbHomeCollection" value="/cimaZone/home/cima.cimaDomain"/-->
+        <property name="usingX509" value="false"/>
+    </bean>	
+	
+</beans>	

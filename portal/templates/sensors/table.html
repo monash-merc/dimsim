@@ -1,0 +1,7 @@
+<table cellspacing="0">
+  {% for i in sensors %}
+  <tr cellpadding="50" class="sensor_val_{{ i.status }}">
+    <td>{{ i.name }} </td><td class="stat">&nbsp;</td><td> {{ i.value }}</td>
+  </tr>
+  {% endfor %}
+</table>

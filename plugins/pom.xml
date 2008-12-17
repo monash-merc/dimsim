@@ -1,0 +1,187 @@
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>au.edu.archer.dimsim</groupId>
+  <artifactId>plugins</artifactId>
+  
+  <name>Dimsim plugins</name>
+  <version>1.0</version>
+  <url>http://www.hpc.jcu.edu.au/projects/DIMSIM/wiki/redesign</url>  
+  
+  <packaging>jar</packaging>
+  
+  <repositories>
+        <repository>
+	   <id>archer</id>
+           <url>http://dev.archer.edu.au/archer-snapshots</url>
+	</repository>
+	<repository>
+		<id>archer</id>
+		<name>archer</name>
+		<url>http://dev.archer.edu.au/maven</url>
+		<layout>default</layout>
+	</repository>
+  </repositories>
+
+
+  <reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.3</version>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.instrumentmiddleware.cima</groupId>
+			<artifactId>schema</artifactId>
+			<version>0.1-SNAPSHOT</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.instrumentmiddleware.cima</groupId>
+			<artifactId>core</artifactId>
+			<version>0.1-SNAPSHOT</version>
+			<scope>compile</scope>
+		</dependency>		
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.3</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>id</artifactId>
+			<version>svn-20070823</version>
+			<scope>compile</scope>
+		</dependency>		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring</artifactId>
+			<version>2.0.7</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!--dependency>
+    		<groupId>org.springframework</groupId>
+    		<artifactId>spring-hibernate3</artifactId>
+    		<version>2.0-m4</version>
+		</dependency -->
+
+		<dependency>
+			<groupId>org.jmock</groupId>
+			<artifactId>jmock-junit4</artifactId>
+			<version>2.2.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.3.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.15</version>
+			<scope>compile</scope>
+		</dependency>	
+		<dependency>
+			<groupId>au.edu.usyd.xraycrystallography</groupId>
+			<artifactId>imageconvert</artifactId>
+			<version>1.0</version>
+			<scope>compile</scope>
+		</dependency>	
+		<dependency>
+			<groupId>au.edu.archer.dimsim</groupId>
+			<artifactId>buffer</artifactId>
+			<version>1.0</version>
+			<scope>compile</scope>
+		</dependency>	
+		<dependency>
+			<groupId>org.instrumentmiddleware.cima</groupId>
+			<artifactId>plugins</artifactId>
+			<version>0.1-SNAPSHOT</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+    		<groupId>xmlbeans</groupId>
+    		<artifactId>xmlbeans</artifactId>
+    		<version>2.3.0</version>
+		</dependency>			
+	</dependencies>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>					
+				</configuration>
+			</plugin>
+			
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>false</downloadJavadocs>
+				</configuration>
+			</plugin>					
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>org.instrumentmiddleware.cima.SpringMain</mainClass>
+							<addClasspath>true</addClasspath>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<!-- exclude>**/HibernateBufferTest.java</exclude  -->						
+					</excludes>
+				</configuration>
+			</plugin>      
+			
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>xmlbeans-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>xmlbeans</goal>
+						</goals>
+					</execution>
+				</executions>
+				<inherited>true</inherited>
+				<configuration>
+					<schemaDirectory>
+						src/main/resources/xsd
+					</schemaDirectory>
+				</configuration>
+			</plugin>
+			
+		</plugins>
+	</build>
+
+</project>

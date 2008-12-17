@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+		xmlns:tns="http://cima.instrumentmiddleware.org/ws"
+		xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+		name="cimaws"
+		targetNamespace="http://cima.instrumentmiddleware.org/ws">
+
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://cima.instrumentmiddleware.org/ws">
+			<xsd:element name="handleParcel" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="handleParcelRes" type="xsd:string">
+			</xsd:element>
+		</xsd:schema>
+
+		<!-- this is for when CXF supports XMLBeans -->
+		<!--xsd:schema targetNamespace="http://cima.instrumentmiddleware.org/ws/"
+				xmlns:cima="http://cima.instrumentmiddleware.org/parcel">
+			<xsd:import
+					namespace="http://cima.instrumentmiddleware.org/parcel"
+					schemaLocation="parcel.xsd" />
+			<xsd:element name="handleParcel" type="cima:parcelType"/>
+			<xsd:element name="handleParcelRes" type="cima:parcelType"/>
+		</xsd:schema-->
+	</wsdl:types>
+
+	<wsdl:message name="handleParcelRequest">
+		<wsdl:part element="tns:handleParcel" name="parameters"/>
+	</wsdl:message>
+
+	<wsdl:message name="handleParcelResponse">
+		<wsdl:part element="tns:handleParcelRes" name="parameters"/>
+	</wsdl:message>
+
+	<wsdl:portType name="CimaWS">
+		<wsdl:operation name="handleParcel">
+			<wsdl:input message="tns:handleParcelRequest"/>
+			<wsdl:output message="tns:handleParcelResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<!-- apparently not necessary -->
+	<!--wsdl:binding name="cimaSOAP" type="tns:CimaWS"
+			xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="handleParcel"-->
+			<!--soap:operation soapAction="http://cima.instrumentmiddleware.org/handleParcel"/-->
+			<!--soap:operation soapAction="handleParcel"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="CimaService">
+		<wsdl:port binding="tns:cimaSOAP" name="cimaSOAP">
+			<soap:address location="http://www.example.org/"/>
+		</wsdl:port>
+	</wsdl:service-->
+</wsdl:definitions>
+

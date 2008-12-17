@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<!--
+		this makes sure CIMA is initialised at startup to allow
+		autosubscription and to make sure all plugins are loaded
+		by CIMA
+	-->
+	<bean id="cimaInit" class="org.instrumentmiddleware.cima.util.ServletInit" scope="singleton"/>
+
+	<!-- import some plugins -->
+	<import resource="plugins.xml"/>
+
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"><value>org.springframework.web.servlet.view.JstlView</value></property>
+		<property name="prefix"><value>/WEB-INF/jsp/</value></property>
+		<property name="suffix"><value>.jsp</value></property>
+	</bean>
+
+	<bean id="memController"
+		class="org.instrumentmiddleware.cima.ws.memController" >
+	</bean>
+
+	<bean id="subCountController"
+		class="org.instrumentmiddleware.cima.ws.SubscriptionCountController" >
+	</bean>
+
+	<bean id="cimaClientController"
+		class="org.instrumentmiddleware.cima.ws.SpringDemoController" >
+		<property name="sessionForm"><value>true</value></property>
+		<property name="commandClass"><value>org.instrumentmiddleware.cima.ws.FormData</value></property>
+		<property name="commandName"><value>subscribeCommand</value></property>
+		<!--
+			this is really lame from Spring - the formView uses the prefix and suffix
+			from the viewResolver bean, but the successView uses only the prefix (but that
+			may be because it's used in a RedirectView?)
+		-->
+		<property name="formView"><value>index</value></property>
+		<property name="successView"><value>index.htm</value></property>
+		<property name="plugin" ref="bufferPlugin"/>
+	</bean>
+
+	<bean id="urlMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/sub.htm">subCountController</prop>
+				<prop key="/mem.htm">memController</prop>
+			</props>
+		</property>
+	</bean>
+	
+</beans>
+

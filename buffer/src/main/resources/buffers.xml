@@ -1,0 +1,94 @@
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<!-- Buffer Setup -->
+	<bean
+		id="bufferManager"		
+		class="au.edu.archer.dimsim.buffer.pool.manager.impl.MemoryBufferManager"
+		scope="singleton">
+	</bean> 	<!-- default buffer in MemoryBufferManager is set to DimsimRingBuffer -->
+	<bean
+		id="deliveryBuffer"
+		class="au.edu.archer.dimsim.buffer.impl.ListDeliveryBuffer"
+		scope="singleton">		
+		<constructor-arg ref="bufferManager"/>
+		<constructor-arg type="int" value="87"/>				
+	</bean>
+	
+	<bean 
+		id="director" 
+		class="org.instrumentmiddleware.cima.core.impl.DimsimCIMADirector"
+		scope="singleton">
+		<constructor-arg ref="pluginController"/>
+		<constructor-arg ref="subscriptionController"/>
+		<constructor-arg ref="descriptionController"/>
+		<constructor-arg ref="pluginManager"/>
+		<constructor-arg ref="sessionManager"/>
+		<constructor-arg ref="transportManager"/>
+		<constructor-arg ref="transportManager"/>
+		<constructor-arg ref="endPointSecurity"/>
+		<property name="validating" value="true"/>
+		<property name="isBuffered" value="true"/>
+		<property name="deliveryBuffer" ref="deliveryBuffer"/>
+		<!-- property name="security" ref="endpointSecurity"/ -->
+	</bean>
+	
+	<bean
+		id="endPointSecurity"
+		class="au.edu.archer.dimsim.security.impl.EndpointSubscriptionSecurityModel"
+		scope="singleton">		
+		<constructor-arg type="int" value="87"/>
+		<constructor-arg>
+                <set>
+                        <set>
+                                <value>SrbConsumer</value>
+                                <value>xr-ice.imb.uq.edu.au:8080</value>
+                                <value>Rigaku_Plugin</value>
+                        </set>
+                        <set> <value>SrbConsumer</value><value>xr-ice.imb.uq.edu.au:8080</value><value>RigakuJPG_Plugin</value> </set>
+                        <set> <value>CDCAConsumer</value><value>xr-ice.imb.uq.edu.au:8080</value><value>Rigaku_Plugin</value> </set>
+                        <set> <value>CDCAConsumer</value><value>xr-ice.imb.uq.edu.au:8080</value><value>RigakuJPG_Plugin</value> </set>                        
+                        <!-- The following allows any cima client to subscribe and get data from LabJack & BufferList Plug-ins -->
+                        <!-- <set> <value>*</value><value>*</value><value>Labjack_Plugin</value> </set>  -->
+                        <set> <value>*</value><value>*</value><value>Cima_Buffer_Plugin</value> </set>
+                </set>
+		</constructor-arg>						
+	</bean>
+	
+	<!-- Strategy -->	
+	<bean id="TooBadDeliveryStrategyClass" class="java.lang.Class" factory-method="forName">
+		<constructor-arg>
+			<value>org.instrumentmiddleware.cima.transport.delivery.impl.TooBadDeliveryStrategy</value>
+		</constructor-arg>
+	</bean>		
+	
+	<!-- plugins -->
+	<bean
+		id="basicProducer"
+		abstract="true">
+		<constructor-arg ref="director"/>
+	</bean>
+	
+	<!-- Buffer plugin -->
+	<!-- Make Sure the delivery Strategy does not re-Buffer -->
+	<bean
+		id="bufferPlugin"
+		class="au.edu.archer.dimsim.buffer.plugin.impl.ListBufferPlugin"
+		scope="singleton"
+		parent="basicProducer">				
+		<constructor-arg type="java.lang.String" value="Cima_Buffer_Plugin"/>			
+		<constructor-arg ref="deliveryBuffer"/>	
+		<property name="deliveryStrategy" ref="TooBadDeliveryStrategyClass"/>
+		<!--property name="bufferSecurity" ref="endPointSecurity"/ -->					
+	</bean>
+	<bean
+		id="stubProducer"
+		class="org.instrumentmiddleware.cima.stubs.StubProducer"
+		scope="singleton"
+		parent="basicProducer">				
+		<constructor-arg type="java.lang.String" value="DimsimStubProducer"/>			
+		<property name="deliveryStrategy" ref="TooBadDeliveryStrategyClass"/>						
+	</bean>	
+</beans>

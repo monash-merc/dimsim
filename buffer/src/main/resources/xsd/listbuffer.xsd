@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:cima="http://cima.instrumentmiddleware.org/parcel"
+	xmlns="http://buffer.dimsim.archer.edu.au/parceltype"
+	targetNamespace="http://buffer.dimsim.archer.edu.au/parceltype"
+	elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+
+	<xs:import
+		namespace="http://cima.instrumentmiddleware.org/parcel"
+		schemaLocation="parcel.xsd" />
+
+	<xs:complexType name="listBufferRow">
+		<xs:annotation>
+			<xs:documentation>Row Definition for Buffer List Parcel</xs:documentation>
+		</xs:annotation>						
+		<xs:sequence>
+			<xs:element
+				minOccurs="1"
+				maxOccurs="1"
+				name="pluginid"
+				type="xs:string">
+				<xs:annotation></xs:annotation>
+			</xs:element>
+			<xs:element
+				minOccurs="0"
+				name="consumerid"
+				type="xs:string">
+				<xs:annotation></xs:annotation>
+			</xs:element>
+			<xs:element
+				minOccurs="1"
+				maxOccurs="1"
+				name="type"
+				type="xs:string">
+				<xs:annotation></xs:annotation>
+			</xs:element>
+			<xs:element
+				minOccurs="1"
+				maxOccurs="1"
+				name="access"
+				type="bufferAccessEnum">
+				<xs:annotation></xs:annotation>
+			</xs:element>										
+			<xs:element
+				minOccurs="0"
+				name="createtime"
+				type="xs:dateTime">
+				<xs:annotation></xs:annotation>
+			</xs:element>					
+			<xs:element
+				minOccurs="0"
+				name="size"
+				type="xs:string">
+				<xs:annotation></xs:annotation>
+			</xs:element>					
+		</xs:sequence>		
+	</xs:complexType>
+	
+	<xs:complexType name="listBufferType">
+		<xs:complexContent>
+			<xs:extension base="cima:bodyType">
+				<xs:sequence>				
+					<xs:element
+				    	maxOccurs="unbounded"
+						name="row"
+						type="listBufferRow">
+						<xs:annotation></xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+					
+</xs:schema>
+

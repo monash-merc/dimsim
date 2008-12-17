@@ -1,0 +1,98 @@
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	 <bean 
+                id="director" 
+                class="org.instrumentmiddleware.cima.core.impl.CIMADirector"
+                scope="singleton">
+                <constructor-arg ref="pluginController"/>
+                <constructor-arg ref="subscriptionController"/>
+	        <constructor-arg ref="descriptionController"/>
+                <constructor-arg ref="pluginManager"/>
+                <constructor-arg ref="sessionManager"/>
+                <constructor-arg ref="transportManager"/>
+                <constructor-arg ref="transportManager"/>
+                <property name="validating" value="false"/>
+        </bean>
+
+	
+	<!-- Consumer Plugins  -->
+	<!-- SRB Plugins -->
+	<bean
+		id="SrbConsumer"
+		class="au.edu.archer.dimsim.plugins.srb.CrystalSRBConsumer"
+		scope="prototype">
+		<constructor-arg type="java.lang.String" value="SrbConsumer"/>
+	        <constructor-arg ref="srbConfig"/>
+	        <property name="remoteBufferPluginID" value="Buffer_Plugin"/>
+	        <property name="startOnLoad" value="true"/>
+		<property name="persistMonitor" ref="serializer"/>
+	</bean>
+	
+       <bean
+        id="srbConfig"
+        class="au.edu.archer.dimsim.plugins.srb.SRBConfig"
+        scope="prototype">
+        <property name="srbHost" value="iguazu.its.monash.edu.au"/>
+        <!--property name="srbPort" value="5544"/-->
+        <property name="srbUsername" value="dimsim"/>
+        <property name="srbPassword" value="m3rcs1m"/>
+        <property name="srbMDASDomain" value="merc"/>
+        <property name="srbMDASZone" value="merczone"/>
+        <property name="srbDefaultResource" value="iguazuDisk"/>
+	<!-- if you turn on usingX509 to true, make sure 
+		1. globus keys are in the apropriate dir
+		2. /tmp/x509up_u500 is setup by running 'grid-proxy-init regularly (once every 24 hours  -->
+        <property name="usingX509" value="false"/>
+       </bean>
+
+        <bean
+                id="serializer"
+                class="au.edu.archer.dimsim.buffer.plugin.impl.DimsimPersistenceMonitor"
+                scope="singleton">
+                <property name="serializePath" value="/opt/tomcat/temp/Cima_serialize"/>
+        </bean>
+
+<!-- Schedulers / cron jobs-->
+	<bean id="subscribeMonash" 
+	 class="au.edu.archer.dimsim.plugins.AutoSubscribe"
+	 scope="singleton">
+	<!-- Make sure plugins names are correctly and without quotes --> 
+                <constructor-arg>
+                        <map>
+                                <entry> 
+					<key><value>SrbConsumer</value></key> 
+                        		<set>
+                                		<value>Rigaku_Monash</value>
+                                		<value>Buffer_Plugin</value>
+                        		</set>
+				</entry>
+                        </map>
+                </constructor-arg>
+                <property name="remoteEndpointURL" value="http://localhost:8080/Cima_Webapp/ws/cima"/>
+	</bean>
+
+	<bean id="checkMonash" class="org.springframework.scheduling.timer.MethodInvokingTimerTaskFactoryBean"> 
+		<property name="targetObject" ref="subscribeMonash" /> 
+		<property name="targetMethod" value="checkAndSubscribe" /> 
+	</bean>
+
+	<bean id="scheduledTask" class="org.springframework.scheduling.timer.ScheduledTimerTask"> 
+	<!-- wait 10 seconds before starting repeated execution --> 
+		<property name="delay" value="10000" /> 
+	<!-- run every 5 min  --> 
+		<property name="period" value="300000" /> 
+		<property name="timerTask" ref="checkMonash" /> 
+	</bean>
+
+	<bean id="timerFactory" class="org.springframework.scheduling.timer.TimerFactoryBean"> 
+		<property name="scheduledTimerTasks"> 
+			<list> 
+				<ref bean="scheduledTask" /> 
+			</list> 
+		</property> 
+	</bean> 
+ 
+</beans>	

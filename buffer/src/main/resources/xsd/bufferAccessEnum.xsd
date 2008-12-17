@@ -1,0 +1,18 @@
+<xs:schema
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:cima="http://cima.instrumentmiddleware.org/parcel"
+	xmlns="http://buffer.dimsim.archer.edu.au/parceltype"
+	targetNamespace="http://buffer.dimsim.archer.edu.au/parceltype"
+	elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	
+	<xs:simpleType name="bufferAccessEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="none" />
+			<xs:enumeration value="read" />
+			<xs:enumeration value="persist" />
+			<xs:enumeration value="load" />
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>

@@ -1,0 +1,5 @@
+/*table { border: 1px solid #aaa; width: 100%; }*/
+.sensor_val_good .stat { background-color: #99fd77; }
+.sensor_val_bad .stat { background-color: #ff5353; }
+#footer { text-align: center; font-size: x-small; }
+.webcam {text-align: center;}

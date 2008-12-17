@@ -1,0 +1,249 @@
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<!-- Buffer Setup -->
+	<bean
+		id="bufferManager"		
+		class="au.edu.archer.dimsim.buffer.pool.manager.impl.MemoryBufferManager"
+		scope="singleton">
+	</bean> 	<!-- default buffer in MemoryBufferManager is set to RingBuffer -->
+	<bean
+		id="deliveryBuffer"
+		class="au.edu.archer.dimsim.buffer.impl.ListDeliveryBuffer"
+		scope="singleton">		
+		<constructor-arg ref="bufferManager"/>
+		<constructor-arg type="int" value="87"/>				
+	</bean>
+	<bean
+		id="ParcelBufferedEventListener"
+		class="au.edu.archer.dimsim.buffer.event.handler.ParcelBufferedEventHandler"
+		scope="singleton">				
+	</bean>
+
+	<bean
+		id="endPointSecurity"
+		class="au.edu.archer.dimsim.security.impl.EndpointSubscriptionSecurityModel"
+		scope="singleton">		
+		<constructor-arg type="int" value="87"/>
+		<constructor-arg>
+		<set>
+			<set>
+				<value>Cima_Portal</value>
+				<value>*</value>
+				<value>Rigaku_Monash</value>
+			</set>
+			<set>
+				<value>Cima_Portal</value>
+				<value>*</value>
+				<value>Buffer_Plugin</value>
+			</set>
+			<set>
+				<value>SrbConsumer</value>
+				<value>*</value>
+				<value>Rigaku_Monash</value>
+			</set>
+                        <set> 
+				<value>SrbConsumer</value>
+				<value>*</value>
+				<value>Buffer_Plugin</value> 
+			</set>
+                       <!-- The following allows any cima client to subscribe and get data from LabJack Plug-in -->
+                        <set> <value>*</value><value>*</value><value>Labjack_Plugin</value> </set>
+		</set>
+		</constructor-arg>				
+	</bean>
+
+	<bean
+                id="director"
+                class="org.instrumentmiddleware.cima.core.impl.DimsimCIMADirector"
+                scope="singleton">
+                <constructor-arg ref="pluginController"/>
+                <constructor-arg ref="subscriptionController"/>
+                <constructor-arg ref="descriptionController"/>
+                <constructor-arg ref="pluginManager"/>
+                <constructor-arg ref="sessionManager"/>
+                <constructor-arg ref="transportManager"/>
+                <constructor-arg ref="transportManager"/>
+		<constructor-arg ref="endPointSecurity"/>
+                <property name="validating" value="false"/>
+                <property name="pingHandler" ref="pingHandler"/>
+                <property name="isBuffered" value="true"/>
+                <property name="deliveryBuffer" ref="deliveryBuffer"/>
+        </bean>
+
+	<bean
+		id="pingHandler"
+		class="org.instrumentmiddleware.cima.core.impl.DimsimPingController"
+		scope="singleton">	
+                <constructor-arg ref="pluginManager"/>
+                <constructor-arg ref="sessionManager"/>
+	</bean>
+
+	<!-- Strategy -->
+	<bean id="TooBadDeliveryStrategyClass" class="java.lang.Class" factory-method="forName">
+		<constructor-arg>
+			<value>org.instrumentmiddleware.cima.transport.delivery.impl.TooBadDeliveryStrategy</value>
+		</constructor-arg>
+	</bean>
+
+	<!-- parcel creators -->	
+	<bean
+		id="RigakuParcelCreator"
+		class="au.edu.archer.dimsim.plugins.parcelcreators.RigakuCCDParcelCreator"
+		scope="prototype">	
+		<constructor-arg type="java.lang.String" value="id"/>			
+	</bean>
+	<bean
+		id="RigakuJPGParcelCreator"
+		class="au.edu.archer.dimsim.plugins.parcelcreators.RigakuJPGBufferedSourceParcelCreator"
+		scope="prototype">				
+		<constructor-arg ref="ParcelBufferedEventListener"/>
+		<property name="defaultFileName" value="/opt/tomcat/temp/latestCrystallography"/>
+	</bean>		
+
+	<!-- plugins -->
+	<bean
+		id="basicProducer"
+		abstract="true">
+		<constructor-arg ref="director"/>
+	</bean>
+	
+	<!-- Buffer plugin -->
+	<!-- Make Sure the delivery Strategy does not re-Buffer -->
+	<bean
+		id="bufferPlugin"
+		class="au.edu.archer.dimsim.buffer.plugin.impl.ListBufferPlugin"
+		scope="singleton"
+		parent="basicProducer">				
+		<constructor-arg type="java.lang.String" value="Buffer_Plugin"/>			
+		<constructor-arg ref="deliveryBuffer"/>	
+		<property name="deliveryStrategy" ref="TooBadDeliveryStrategyClass"/>		
+		<property name="bufferSecurity" ref="endPointSecurity"/>	
+	</bean>
+
+	<!-- Rigaku Plug-ins -->
+	<bean
+		id="adminDBMonitor"
+		class="au.edu.archer.dimsim.CrystalClear.AdminDBMonitor"
+		scope="singleton">						
+		<constructor-arg type="java.lang.String" value="/mnt/ctrlpc/AdminDatabase_140.xml"/>				
+		<property name="listenerset">
+			<set>
+				<ref bean="RigakuSCPMultiUser"/>
+				<ref bean="RigakuJPGMultiUser"/>				
+			</set>
+		</property>		
+	</bean>
+	
+	<bean
+		id="RigakuSCPMultiUser"
+		class="au.edu.archer.dimsim.plugins.RigakuSCPMultiUser"
+		scope="singleton"
+		parent="basicProducer">		
+		<constructor-arg type="java.lang.String" value="Rigaku"/>						
+		<property name="dirmap">  
+		<!-- Spring does not work with upper case property names for collections -->   
+			<map>
+				<!--entry key="C:/Program Files/Rigaku MSC/CrystalClear/Data" value="/mnt/ctrlpc/"/-->
+				<entry key="C:" value="/mnt/ctrlpcscripts"/>
+			</map>
+		</property>		
+		<property name="replacemap">
+			<map>
+				<entry key="\\Program Files\\Rigaku MSC\\CrystalClear\\Data\\rossjohn\\SaBPL_inhibitors\\050607\\Images" value="Images"/>
+				<entry key="\" value="/"/>				
+			</map>
+		</property>			
+		<property name="deliveryStrategy" ref="TooBadDeliveryStrategyClass"/>
+		<property name="startOnLoad" value="true"/>
+		<!--property name="userRecord" ref="adminDBMonitor"/-->	
+	</bean>	
+	
+	<bean
+                id="RigakuJPGMultiUser"
+                class="au.edu.archer.dimsim.plugins.RigakuJPGMultiUser"
+                scope="singleton"
+                parent="basicProducer">
+                <constructor-arg ref="RigakuSCPMultiUser"/>
+                <constructor-arg type="java.lang.String" value="RigakuJPG"/>
+                <property name="deliveryStrategy" ref="TooBadDeliveryStrategyClass"/>
+		<property name="factory">
+	            <bean
+			class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
+	                <property name="targetBeanName">
+        	            <idref local="RigakuJPGParcelCreator" />
+                	</property>
+	            </bean>
+        	</property>
+		<property name="startOnLoad" value="true"/>
+		<property name="standAloneMode" value="true"/>
+		<property name="addValidUsersToEndPointSecurity" value="true"/>
+	</bean> 
+
+	<!-- Singleton Plugins -->	
+	<!-- bean
+		id="RigakuSCPPlugin"
+		class="au.edu.archer.dimsim.plugins.RigakuSCPPlugin"
+		scope="singleton"
+		parent="basicProducer">		
+		<constructor-arg ref="RigakuParcelCreator"/>		
+		<constructor-arg index="2" type="java.lang.String" value="Rigaku_Plugin"/>						
+		<property name="dirmap">  
+			<map>
+				<entry key="C:/Program Files/Rigaku MSC/CrystalClear/Data" value="/mnt/ctrlpc/"/>
+			</map>
+		</property>		
+		<property name="replacemap">
+			<map>
+				<entry key="\" value="/"/>				
+			</map>
+		</property>			
+		<property name="deliveryStrategy" ref="TooBadDeliveryStrategyClass"/>
+		<property name="scpFileName" value="/mnt/ctrlpc/rossjohn/scripts/SessionScript.scp"/>		
+	</bean -->	
+	
+	<!--bean
+		id="RigakuJPGlugin"
+		class="au.edu.archer.dimsim.plugins.RigakuJPGPlugin"
+		scope="singleton"
+		parent="basicProducer">		
+		<constructor-arg ref="RigakuSCPPlugin"/>		
+		<constructor-arg type="java.lang.String" value="RigakuJPG_Plugin"/>	
+		<property name="deliveryStrategy" ref="TooBadDeliveryStrategyClass"/>			
+	</bean -->
+
+	<!-- old plugin -->
+	<!--bean
+		id="SCPPollerProducer"
+		name="SCPPollerProducer"
+		class="au.edu.archer.cima.plugin.xtal.SCPDirectorySinglePollerParcelProducer"
+		scope="prototype"
+		parent="baseProducer">
+		<constructor-arg value="SCPPollerProducer"/>
+		<constructor-arg>
+			<bean
+				id="xtalCreator"
+				class="au.edu.archer.cima.plugin.xtal.XtalParcelCreator"
+				scope="prototype">
+				<property name="inlineData" value="false"/>
+				<property name="urlPrefix" value="http://jainis.med.monash.edu.au/xtal-files/"/>
+				<property name="urlPrefixReplace" value="/mnt/ctrlpc/"/>
+			</bean>
+		</constructor-arg>
+		<constructor-arg type="long" value="5000"/>
+		<constructor-arg type="java.lang.String" value="notmulti!"/>
+		<constructor-arg type="java.lang.String" value="/mnt/ctrlpc/rossjohn/scripts/SessionScript.scp"/>
+		<constructor-arg type="java.lang.String" value="/mnt/ctrlpcscripts/SessionScript.scp"/>
+		<property name="pathReplacements">
+			<list>
+				<bean class="au.edu.archer.cima.plugin.xtal.SCPDirectorySinglePollerParcelProducer$Replacement">
+					<constructor-arg value="C:/Program Files/Rigaku MSC/CrystalClear/Data"/>
+					<constructor-arg value="/mnt/ctrlpc"/>
+				</bean>
+			</list>
+		</property>
+	</bean-->
+	
+</beans>	

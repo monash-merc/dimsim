@@ -1,0 +1,8 @@
+The plugins configured in this codebase is for Monash university's crystallography lab. 
+To generate CIMA producer instance , cd warSource and run ./pack.sh
+To generate CIMA consumer instance, cd warConsumer and run ./pack.sh
+WAR files are generated in target folder and copied to wars folder at root level.
+Copy the war files and deploy them to your favourite servlet container.
+
+To run jetty, just use run command in warSource and warConsumer folders.
+ 

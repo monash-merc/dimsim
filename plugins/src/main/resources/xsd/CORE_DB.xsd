@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:CORE_DB="http://www.rigakumsc.com/Hobbit" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.rigakumsc.com/Hobbit">
+  <xs:import schemaLocation="AdminDB_ELEM.xsd"/>
+  <xs:element name="OADMIN_DB">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="iMinorVersion"/>
+        <xs:element ref="lGroups"/>
+        <xs:element ref="lUsers"/>
+        <xs:element ref="lServers"/>
+        <xs:element ref="lTools"/>
+        <xs:element ref="lModules"/>
+        <xs:element ref="lAppPreferences"/>
+        <xs:element ref="lGeneralPreferences"/>
+        <xs:element ref="lDirectories"/>
+        <xs:element ref="lAvailAdminRights"/>
+        <xs:element ref="lAvailAppRights"/>
+        <xs:element ref="lAvailLanguages"/>
+        <xs:element ref="lAvailDirectories"/>
+        <xs:element ref="lCoreData"/>
+        <xs:element ref="lAppData"/>
+      </xs:sequence>
+      <xs:attribute name="HoType" type="xs:NCName" use="required"/>
+      <xs:attribute name="mtype" type="xs:integer" use="required"/>
+      <xs:attribute name="name" type="xs:NCName" use="required"/>
+      <xs:attribute name="objID" type="xs:NCName" use="required"/>
+      <xs:attribute name="otype" type="xs:integer" use="required"/>
+      <xs:attribute name="version" type="xs:integer" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		xmlns:cima="http://cima.instrumentmiddleware.org/parcel"
+		xmlns:xtal="http://archer.edu.au/cima/xtal"
+		targetNamespace="http://archer.edu.au/cima/xtal"
+		elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xs:import namespace="http://cima.instrumentmiddleware.org/parcel"/>
+
+	<xs:complexType name="pingPluginType">
+		<xs:complexContent>
+			<xs:extension base="cima:bodyType">
+				<xs:sequence>
+					<xs:element
+						minOccurs="0"
+						name="message"
+						type="xs:string">
+						<xs:annotation></xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute
+					name="sessionid"
+					use="optional"
+					type="xs:string">
+					<xs:annotation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="pingSubscriptionResponseType">
+		<xs:complexContent>
+			<xs:extension base="cima:subscriptionResponseType">
+				<xs:sequence>
+					<xs:element name="pingResponse" type="xtal:pingPluginType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>
