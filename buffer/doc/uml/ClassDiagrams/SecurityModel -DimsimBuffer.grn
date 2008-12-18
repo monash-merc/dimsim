@@ -1,0 +1,32 @@
+<uml>
+   <greenVersion="30000"/>
+   <type>
+      <name="=Buffer/src\/main\/java<au.edu.archer.dimsim.security{IEndPointSecurity.java[IEndPointSecurity"/>
+      <height="-1"/>
+      <width="-1"/>
+      <x="14"/>
+      <y="394"/>
+   </type>
+   <type>
+      <name="=Buffer/src\/main\/java<au.edu.archer.dimsim.security.impl{EndpointSubscriptionSecurityModel.java[EndpointSubscriptionSecurityModel"/>
+      <height="-1"/>
+      <width="-1"/>
+      <x="77"/>
+      <y="695"/>
+   </type>
+   <type>
+      <name="=Buffer/src\/main\/java<org.instrumentmiddleware.cima.core.impl{DimsimCIMADirector.java[DimsimCIMADirector"/>
+      <height="271"/>
+      <width="954"/>
+      <x="14"/>
+      <y="24"/>
+   </type>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.realization.RealizationPart"/>
+      <sourceType="=Buffer/src\/main\/java<au.edu.archer.dimsim.security.impl{EndpointSubscriptionSecurityModel.java[EndpointSubscriptionSecurityModel"/>
+      <targetType="=Buffer/src\/main\/java<au.edu.archer.dimsim.security{IEndPointSecurity.java[IEndPointSecurity"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+</uml>
+

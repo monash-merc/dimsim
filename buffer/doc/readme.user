@@ -1,0 +1,27 @@
+To use Dimsim Buffer with CIMA, 
+1. Replace CIMA Director bean with Dimsim bean 'DimsimCIMADirector'
+2. Instantiate a Buffer instance. Either DeliveryBuffer or ListDeliveryBuffer depending on what functions are required.
+3. To access methods declared in the IDeliveryBufer Interface, 
+	3.1 If accessing from the same JVM, obtain Buffer Bean instance and invoke IDelivery(/List)Buffer interface methods.	     
+	3.2 If accessing from different JVM
+	    3.2.1 Extend AbstractDimsimConsumerPlugin class to create a new consumer 
+	    3.2.2 Instantiate consumer bean
+	    3.2.3 On the source JVM, instantiate BufferPlugin (or ListBufferPlugin)
+	    3.2.4 Fire away Command Operations to Buffer Plugin from Consumer using methods available 
+	          in AbstractDimsimConsumerPlugin
+
+
+To enable EndPointSecurity
+1. If Security is enabled in DimsimCIMADirector, subscription requests will be denied for all consumer/url/plugin 
+   tuples not defined to EndPointSubscriptionSecurityModel.	             
+2. For static declaration of security tuples, view Bean definition and constructor args in resource buffers.xml 
+   for Class EndpointSubscriptionSecurityModel.
+3. Dynamic addition and deletion of security tuples is possible by invoking 'add' methods defined in the 
+   interface IEndPointSecurity. Since this requires access to IEndPointSecurity bean instance, dynamic changes to \
+   security is restricted to JVM at source-end.
+   
+To Buffer at Consumer End
+ 1. AbstractDimsimConsumerPlugin provides methods for buffering incoming parcels. 
+    One use case for this function is arrival of out of order parcels. Consumer plugin can now buffer such parcels
+    and wait until the required parcels arrive. Consumer Plugins can also choose to send a request to Source 
+    BufferPlugin for required parcels. 

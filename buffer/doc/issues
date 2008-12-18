@@ -1,0 +1,5 @@
+1. CIMA obtains Endpoint from Session value using Map field. Need a better way to do this.
+   AbstractDimsimConsumer uses this in method getCommandResponse
+		EndpointType endpoint = (EndpointType) session.get("endpoint");
+		
+2. 

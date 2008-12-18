@@ -1,0 +1,32 @@
+<uml>
+   <greenVersion="30000"/>
+   <type>
+      <name="=Buffer/src\/main\/java<au.edu.archer.dimsim.buffer.impl{BufferUtility.java[BufferUtility"/>
+      <height="-1"/>
+      <width="-1"/>
+      <x="9"/>
+      <y="570"/>
+   </type>
+   <type>
+      <name="=Buffer/src\/main\/java<au.edu.archer.dimsim.buffer.util{DimsimUtils.java[DimsimUtils"/>
+      <height="-1"/>
+      <width="-1"/>
+      <x="7"/>
+      <y="17"/>
+   </type>
+   <type>
+      <name="=Buffer/src\/main\/java<au.edu.archer.dimsim.buffer.util{ParcelCreateTimeComparator.java[ParcelCreateTimeComparator"/>
+      <height="-1"/>
+      <width="-1"/>
+      <x="10"/>
+      <y="212"/>
+   </type>
+   <type>
+      <name="=Buffer/src\/main\/java<au.edu.archer.dimsim.buffer.util{ParcelUtils.java[ParcelUtils"/>
+      <height="-1"/>
+      <width="-1"/>
+      <x="7"/>
+      <y="366"/>
+   </type>
+</uml>
+

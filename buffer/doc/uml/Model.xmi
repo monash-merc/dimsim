@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMI xmlns:UML="http://schema.omg.org/spec/UML/1.3" verified="false" timestamp="2008-06-12T16:21:29" xmi.version="1.2" >
+ <XMI.header>
+  <XMI.documentation>
+   <XMI.exporter>umbrello uml modeller http://uml.sf.net</XMI.exporter>
+   <XMI.exporterVersion>1.5.8</XMI.exporterVersion>
+   <XMI.exporterEncoding>UnicodeUTF8</XMI.exporterEncoding>
+  </XMI.documentation>
+  <XMI.metamodel xmi.name="UML" href="UML.xml" xmi.version="1.3" />
+ </XMI.header>
+ <XMI.content>
+  <UML:Model isSpecification="false" isLeaf="false" isRoot="false" xmi.id="m1" isAbstract="false" name="UML Model" >
+   <UML:Namespace.ownedElement>
+    <UML:Stereotype isSpecification="false" isLeaf="false" visibility="public" namespace="m1" xmi.id="folder" isRoot="false" isAbstract="false" name="folder" />
+    <UML:Stereotype isSpecification="false" isLeaf="false" visibility="public" namespace="m1" xmi.id="datatype" isRoot="false" isAbstract="false" name="datatype" />
+    <UML:Model stereotype="folder" isSpecification="false" isLeaf="false" visibility="public" namespace="m1" xmi.id="Logical View" isRoot="false" isAbstract="false" name="Logical View" >
+     <UML:Namespace.ownedElement>
+      <UML:Package stereotype="folder" isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="Datatypes" isRoot="false" isAbstract="false" name="Datatypes" >
+       <UML:Namespace.ownedElement>
+        <UML:DataType stereotype="datatype" isSpecification="false" isLeaf="false" visibility="public" namespace="Datatypes" xmi.id="XlsrJcdp7mVV" isRoot="false" isAbstract="false" name="int" />
+        <UML:DataType stereotype="datatype" isSpecification="false" isLeaf="false" visibility="public" namespace="Datatypes" xmi.id="yISTfsc1xlLz" isRoot="false" isAbstract="false" name="char" />
+        <UML:DataType stereotype="datatype" isSpecification="false" isLeaf="false" visibility="public" namespace="Datatypes" xmi.id="GJhOBUvuMlDy" isRoot="false" isAbstract="false" name="bool" />
+        <UML:DataType stereotype="datatype" isSpecification="false" isLeaf="false" visibility="public" namespace="Datatypes" xmi.id="O148WZxSrOvU" isRoot="false" isAbstract="false" name="float" />
+        <UML:DataType stereotype="datatype" isSpecification="false" isLeaf="false" visibility="public" namespace="Datatypes" xmi.id="GYTEHpBV6suH" isRoot="false" isAbstract="false" name="double" />
+        <UML:DataType stereotype="datatype" isSpecification="false" isLeaf="false" visibility="public" namespace="Datatypes" xmi.id="Np9haNexMi5s" isRoot="false" isAbstract="false" name="short" />
+        <UML:DataType stereotype="datatype" isSpecification="false" isLeaf="false" visibility="public" namespace="Datatypes" xmi.id="F3L7PEZfk3rz" isRoot="false" isAbstract="false" name="long" />
+        <UML:DataType stereotype="datatype" isSpecification="false" isLeaf="false" visibility="public" namespace="Datatypes" xmi.id="q0VwtPCECLvn" isRoot="false" isAbstract="false" name="unsigned int" />
+        <UML:DataType stereotype="datatype" isSpecification="false" isLeaf="false" visibility="public" namespace="Datatypes" xmi.id="gZi2HltVmCcB" isRoot="false" isAbstract="false" name="unsigned short" />
+        <UML:DataType stereotype="datatype" isSpecification="false" isLeaf="false" visibility="public" namespace="Datatypes" xmi.id="Q9p9Ce80fbxY" isRoot="false" isAbstract="false" name="unsigned long" />
+        <UML:DataType stereotype="datatype" isSpecification="false" isLeaf="false" visibility="public" namespace="Datatypes" xmi.id="07kBSfw7De7S" isRoot="false" isAbstract="false" name="string" />
+        <UML:DataType stereotype="datatype" isSpecification="false" isLeaf="false" visibility="public" namespace="Datatypes" xmi.id="Qicc9UnMVAQC" isRoot="false" isAbstract="false" name="undef" />
+       </UML:Namespace.ownedElement>
+      </UML:Package>
+      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="gmyD4fBOgzux" isRoot="false" isAbstract="false" name="CIMA" />
+      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="GpwCsuKWfGjj" isRoot="false" isAbstract="false" name="DimsimBuffer" />
+      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="1cJxlCv11rBr" isRoot="false" isAbstract="false" name="RemoteBufferPlugin" />
+      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="KTf5fa4ePGV9" isRoot="false" isAbstract="false" name="RemotePlugin" />
+      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="5cLh2ZA9H0gj" isRoot="false" isAbstract="false" name="portal" />
+      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="fl5rB87FkQwk" isRoot="false" isAbstract="false" name="DimsimConsumer" />
+      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="uUjwGScuBilL" isRoot="false" isAbstract="false" name="localBuffer" />
+      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="cKz1phBCNQnG" isRoot="false" isAbstract="false" name="SRB" />
+     </UML:Namespace.ownedElement>
+     <XMI.extension xmi.extender="umbrello" >
+      <diagrams>
+       <diagram snapgrid="0" showattsig="1" fillcolor="#ffffc0" linewidth="0" zoom="100" showgrid="0" showopsig="1" usefillcolor="1" snapx="10" canvaswidth="1058" snapy="10" showatts="1" xmi.id="bh3pq3Auxv50" documentation="" type="3" showops="1" showpackage="0" name="OutOfSyncParcelHandling" localid="zDzinvLbUKcJ" showstereotype="0" showscope="1" snapcsgrid="0" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="#ff0000" canvasheight="867" >
+        <widgets>
+         <objectwidget usesdiagramfillcolor="0" width="55" x="134" fillcolor="#ffffc0" y="48" instancename="" linewidth="none" height="28" usefillcolor="1" isinstance="0" xmi.id="gmyD4fBOgzux" decon="0" localid="hscmPvL5y8vz" multipleinstance="0" drawasactor="0" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,1,0,0,0" linecolor="#ff0000" />
+         <objectwidget usesdiagramfillcolor="0" width="113" x="295" fillcolor="#ffffc0" y="48" instancename="" linewidth="none" height="28" usefillcolor="1" isinstance="0" xmi.id="GpwCsuKWfGjj" decon="0" localid="tu5YtyVZq5JE" multipleinstance="0" drawasactor="0" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,1,0,0,0" linecolor="#ff0000" />
+         <objectwidget usesdiagramfillcolor="0" width="153" x="227" fillcolor="#ffffc0" y="80" instancename="" linewidth="none" height="63" usefillcolor="1" isinstance="0" xmi.id="1cJxlCv11rBr" decon="0" localid="kUNPk66e0BCr" multipleinstance="0" drawasactor="1" usesdiagramusefillcolor="0" font="Sans,10,-1,5,50,0,1,0,0,0" linecolor="#ff0000" />
+         <objectwidget usesdiagramfillcolor="0" width="113" x="25" fillcolor="#ffffc0" y="48" instancename="" linewidth="none" height="63" usefillcolor="1" isinstance="0" xmi.id="KTf5fa4ePGV9" decon="0" localid="ksWSwc6wmIlt" multipleinstance="0" drawasactor="1" usesdiagramusefillcolor="0" font="Sans,10,-1,5,50,0,1,0,0,0" linecolor="#ff0000" />
+         <objectwidget usesdiagramfillcolor="0" width="60" x="576" fillcolor="#ffffc0" y="48" instancename="" linewidth="none" height="28" usefillcolor="1" isinstance="0" xmi.id="5cLh2ZA9H0gj" decon="0" localid="wGqq26cw2oli" multipleinstance="0" drawasactor="0" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,1,0,0,0" linecolor="#ff0000" />
+         <objectwidget usesdiagramfillcolor="0" width="139" x="686" fillcolor="#ffffc0" y="48" instancename="" linewidth="none" height="63" usefillcolor="1" isinstance="0" xmi.id="fl5rB87FkQwk" decon="0" localid="z5sG5Wy2mosp" multipleinstance="0" drawasactor="1" usesdiagramusefillcolor="0" font="Sans,10,-1,5,50,0,1,0,0,0" linecolor="#ff0000" />
+         <objectwidget usesdiagramfillcolor="0" width="93" x="768" fillcolor="#ffffc0" y="48" instancename="" linewidth="none" height="28" usefillcolor="1" isinstance="0" xmi.id="uUjwGScuBilL" decon="0" localid="PfNDXA50r0EK" multipleinstance="0" drawasactor="0" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,1,0,0,0" linecolor="#ff0000" />
+         <boxwidget usesdiagramfillcolor="1" width="299" x="240" fillcolor="none" y="26" linewidth="none" height="767" usefillcolor="1" isinstance="0" xmi.id="gXpN7V6ivdLD" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="#000000" />
+         <floatingtext usesdiagramfillcolor="1" width="56" x="708" fillcolor="none" y="30" linewidth="none" posttext="" role="700" height="22" usefillcolor="1" pretext="" isinstance="0" xmi.id="ZHbeJZOz4BM9" text="DIMSIM" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
+         <objectwidget usesdiagramfillcolor="0" width="50" x="912" fillcolor="#ffffc0" y="48" instancename="" linewidth="none" height="28" usefillcolor="1" isinstance="0" xmi.id="cKz1phBCNQnG" decon="0" localid="zDzinvLbUKcJ" multipleinstance="0" drawasactor="0" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,1,0,0,0" linecolor="#ff0000" />
+         <boxwidget usesdiagramfillcolor="1" width="170" x="694" fillcolor="none" y="26" linewidth="none" height="762" usefillcolor="1" isinstance="0" xmi.id="oUtoCQJ02OeV" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="#000000" />
+         <floatingtext usesdiagramfillcolor="1" width="56" x="241" fillcolor="none" y="25" linewidth="none" posttext="" role="700" height="22" usefillcolor="1" pretext="" isinstance="0" xmi.id="ZHbeJZOz4BM9" text="DIMSIM" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
+        </widgets>
+        <messages>
+         <messagewidget usesdiagramfillcolor="1" width="188" x="162" fillcolor="none" y="276" operation="buffer start experiment parcel" linewidth="none" widgetbid="tu5YtyVZq5JE" height="8" usefillcolor="1" seqnum="2" textid="BfWZVjSpCFM4" widgetaid="hscmPvL5y8vz" isinstance="0" xmi.id="35d43mo2rYGo" sequencemessagetype="1001" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" >
+          <floatingtext usesdiagramfillcolor="1" width="220" x="167" fillcolor="none" y="254" linewidth="none" posttext="" role="704" height="22" usefillcolor="1" pretext="" isinstance="0" xmi.id="BfWZVjSpCFM4" text="2: buffer start experiment parcel" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
+         </messagewidget>
+         <messagewidget usesdiagramfillcolor="1" width="443" x="162" fillcolor="none" y="316" operation="send start experiment parcel" linewidth="none" widgetbid="wGqq26cw2oli" height="8" usefillcolor="1" seqnum="2" textid="um2loVq96ozv" widgetaid="hscmPvL5y8vz" isinstance="0" xmi.id="PaJfWLm7Pg7A" sequencemessagetype="1001" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" >
+          <floatingtext usesdiagramfillcolor="1" width="212" x="167" fillcolor="none" y="294" linewidth="none" posttext="" role="704" height="22" usefillcolor="1" pretext="" isinstance="0" xmi.id="um2loVq96ozv" text="2: send start experiment parcel" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
+         </messagewidget>
+         <messagewidget usesdiagramfillcolor="1" width="78" x="82" fillcolor="none" y="410" operation="new image parcel" linewidth="none" widgetbid="hscmPvL5y8vz" height="8" usefillcolor="1" seqnum="4" textid="CZwDRPNc4tBY" widgetaid="ksWSwc6wmIlt" isinstance="0" xmi.id="rjAt8Wr8lCtv" sequencemessagetype="1001" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" >
+          <floatingtext usesdiagramfillcolor="1" width="140" x="87" fillcolor="none" y="388" linewidth="none" posttext="" role="704" height="22" usefillcolor="1" pretext="" isinstance="0" xmi.id="CZwDRPNc4tBY" text="4: new image parcel" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
+         </messagewidget>
+         <messagewidget usesdiagramfillcolor="1" width="602" x="153" fillcolor="none" y="355" operation="send subscription request" linewidth="none" widgetbid="hscmPvL5y8vz" height="32" usefillcolor="1" seqnum="3" textid="bcNnrhqjUsVG" widgetaid="z5sG5Wy2mosp" isinstance="0" xmi.id="JQX3GP6dyXaV" sequencemessagetype="1000" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" >
+          <floatingtext usesdiagramfillcolor="1" width="191" x="158" fillcolor="none" y="333" linewidth="none" posttext="" role="704" height="22" usefillcolor="1" pretext="" isinstance="0" xmi.id="bcNnrhqjUsVG" text="3: send subscription request" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
+         </messagewidget>
+         <messagewidget usesdiagramfillcolor="1" width="443" x="162" fillcolor="none" y="487" operation="send new image parcel" linewidth="none" widgetbid="wGqq26cw2oli" height="8" usefillcolor="1" seqnum="5" textid="LLNS7MLItHVK" widgetaid="hscmPvL5y8vz" isinstance="0" xmi.id="DkhpC5yTVVUj" sequencemessagetype="1001" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" >
+          <floatingtext usesdiagramfillcolor="1" width="175" x="167" fillcolor="none" y="465" linewidth="none" posttext="" role="704" height="22" usefillcolor="1" pretext="" isinstance="0" xmi.id="LLNS7MLItHVK" text="5: send new image parcel" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
+         </messagewidget>
+         <messagewidget usesdiagramfillcolor="1" width="592" x="162" fillcolor="none" y="446" operation="send new image parcel" linewidth="none" widgetbid="z5sG5Wy2mosp" height="8" usefillcolor="1" seqnum="5" textid="fqwhj6FIia6Z" widgetaid="hscmPvL5y8vz" isinstance="0" xmi.id="pNFVIVyUEgJO" sequencemessagetype="1001" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" >
+          <floatingtext usesdiagramfillcolor="1" width="175" x="167" fillcolor="none" y="424" linewidth="none" posttext="" role="704" height="22" usefillcolor="1" pretext="" isinstance="0" xmi.id="fqwhj6FIia6Z" text="5: send new image parcel" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
+         </messagewidget>
+         <messagewidget usesdiagramfillcolor="1" width="48" x="756" fillcolor="none" y="458" operation="determine out of sync parcel" linewidth="none" widgetbid="z5sG5Wy2mosp" height="20" usefillcolor="1" seqnum="6" textid="GuJikoy57JVC" widgetaid="z5sG5Wy2mosp" isinstance="0" xmi.id="ywHxkbj8ExUn" sequencemessagetype="1001" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" >
+          <floatingtext usesdiagramfillcolor="1" width="211" x="761" fillcolor="none" y="436" linewidth="none" posttext="" role="705" height="22" usefillcolor="1" pretext="" isinstance="0" xmi.id="GuJikoy57JVC" text="6: determine out of sync parcel" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
+         </messagewidget>
+         <messagewidget usesdiagramfillcolor="1" width="57" x="756" fillcolor="none" y="509" operation="buffer until start parcel is recieved" linewidth="none" widgetbid="PfNDXA50r0EK" height="8" usefillcolor="1" seqnum="6" textid="R13OdDYtFmYg" widgetaid="z5sG5Wy2mosp" isinstance="0" xmi.id="n8NgeElbhYnj" sequencemessagetype="1001" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" >
+          <floatingtext usesdiagramfillcolor="1" width="249" x="761" fillcolor="none" y="487" linewidth="none" posttext="" role="704" height="22" usefillcolor="1" pretext="" isinstance="0" xmi.id="R13OdDYtFmYg" text="6: buffer until start parcel is recieved" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
+         </messagewidget>
+         <messagewidget usesdiagramfillcolor="1" width="450" x="304" fillcolor="none" y="531" operation="request latest start parcel" linewidth="none" widgetbid="kUNPk66e0BCr" height="8" usefillcolor="1" seqnum="7" textid="pcnXCr7SjQAT" widgetaid="z5sG5Wy2mosp" isinstance="0" xmi.id="gIAHzg4hwtmf" sequencemessagetype="1001" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" >
+          <floatingtext usesdiagramfillcolor="1" width="192" x="309" fillcolor="none" y="509" linewidth="none" posttext="" role="704" height="22" usefillcolor="1" pretext="" isinstance="0" xmi.id="pcnXCr7SjQAT" text="7: request latest start parcel" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
+         </messagewidget>
+         <messagewidget usesdiagramfillcolor="1" width="450" x="304" fillcolor="none" y="563" operation="send latest start parcel" linewidth="none" widgetbid="z5sG5Wy2mosp" height="8" usefillcolor="1" seqnum="8" textid="C6XHP2R0rwXv" widgetaid="kUNPk66e0BCr" isinstance="0" xmi.id="iPcARW8gPL6e" sequencemessagetype="1001" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" >
+          <floatingtext usesdiagramfillcolor="1" width="174" x="309" fillcolor="none" y="541" linewidth="none" posttext="" role="704" height="22" usefillcolor="1" pretext="" isinstance="0" xmi.id="C6XHP2R0rwXv" text="8: send latest start parcel" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
+         </messagewidget>
+         <messagewidget usesdiagramfillcolor="1" width="180" x="756" fillcolor="none" y="593" operation="Create New Experiment Folder" linewidth="none" widgetbid="zDzinvLbUKcJ" height="8" usefillcolor="1" seqnum="9" textid="rKed308tctOp" widgetaid="z5sG5Wy2mosp" isinstance="0" xmi.id="7045g49GP6GE" sequencemessagetype="1001" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" >
+          <floatingtext usesdiagramfillcolor="1" width="223" x="761" fillcolor="none" y="571" linewidth="none" posttext="" role="704" height="22" usefillcolor="1" pretext="" isinstance="0" xmi.id="rKed308tctOp" text="9: Create New Experiment Folder" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
+         </messagewidget>
+         <messagewidget usesdiagramfillcolor="1" width="67" x="755" fillcolor="none" y="631" operation="get/reset buffered images for experiment" linewidth="none" widgetbid="PfNDXA50r0EK" height="32" usefillcolor="1" seqnum="9" textid="jTFSrOu3SRIq" widgetaid="z5sG5Wy2mosp" isinstance="0" xmi.id="InXg91oOoW4t" sequencemessagetype="1000" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" >
+          <floatingtext usesdiagramfillcolor="1" width="294" x="760" fillcolor="none" y="609" linewidth="none" posttext="" role="704" height="22" usefillcolor="1" pretext="" isinstance="0" xmi.id="jTFSrOu3SRIq" text="9: get/reset buffered images for experiment" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
+         </messagewidget>
+         <messagewidget usesdiagramfillcolor="1" width="180" x="756" fillcolor="none" y="705" operation="put images received from local buffer" linewidth="none" widgetbid="zDzinvLbUKcJ" height="8" usefillcolor="1" seqnum="10" textid="RkqGeLBVfn8h" widgetaid="z5sG5Wy2mosp" isinstance="0" xmi.id="okVUyBehZ4G4" sequencemessagetype="1001" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" >
+          <floatingtext usesdiagramfillcolor="1" width="278" x="761" fillcolor="none" y="683" linewidth="none" posttext="" role="704" height="22" usefillcolor="1" pretext="" isinstance="0" xmi.id="RkqGeLBVfn8h" text="10: put images received from local buffer" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
+         </messagewidget>
+         <messagewidget usesdiagramfillcolor="1" width="78" x="82" fillcolor="none" y="251" operation="start experiment parcel" linewidth="none" widgetbid="hscmPvL5y8vz" height="8" usefillcolor="1" seqnum="1" textid="MzqGMqiGijGL" widgetaid="ksWSwc6wmIlt" isinstance="0" xmi.id="KrhjbbvJ3unn" sequencemessagetype="1001" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" >
+          <floatingtext usesdiagramfillcolor="1" width="177" x="87" fillcolor="none" y="229" linewidth="none" posttext="" role="704" height="22" usefillcolor="1" pretext="" isinstance="0" xmi.id="MzqGMqiGijGL" text="1: start experiment parcel" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
+         </messagewidget>
+         <messagewidget usesdiagramfillcolor="1" width="453" x="153" fillcolor="none" y="169" operation="send subsription request" linewidth="none" widgetbid="hscmPvL5y8vz" height="32" usefillcolor="1" seqnum="0" textid="nL6ebrCFOQhD" widgetaid="wGqq26cw2oli" isinstance="0" xmi.id="QUdkxnB7CCAY" sequencemessagetype="1000" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" >
+          <floatingtext usesdiagramfillcolor="1" width="184" x="158" fillcolor="none" y="147" linewidth="none" posttext="" role="704" height="22" usefillcolor="1" pretext="" isinstance="0" xmi.id="nL6ebrCFOQhD" text="0: send subsription request" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
+         </messagewidget>
+        </messages>
+        <associations/>
+       </diagram>
+       <diagram snapgrid="0" showattsig="1" fillcolor="#ffffc0" linewidth="0" zoom="100" showgrid="0" showopsig="1" usefillcolor="1" snapx="10" canvaswidth="1016" snapy="10" showatts="1" xmi.id="Q6wDnQRFHp7J" documentation="" type="3" showops="1" showpackage="0" name="ConsumerParcelHandling" localid="w2btIxIF4qp0" showstereotype="0" showscope="1" snapcsgrid="0" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="#ff0000" canvasheight="883" >
+        <widgets>
+         <objectwidget usesdiagramfillcolor="0" width="113" x="104" fillcolor="#ffffc0" y="48" instancename="" linewidth="none" height="63" usefillcolor="1" isinstance="0" xmi.id="KTf5fa4ePGV9" decon="0" localid="HWb7yJwCxHOR" multipleinstance="0" drawasactor="1" usesdiagramusefillcolor="0" font="Sans,10,-1,5,50,0,1,0,0,0" linecolor="#ff0000" />
+         <objectwidget usesdiagramfillcolor="0" width="139" x="364" fillcolor="#ffffc0" y="48" instancename="" linewidth="none" height="63" usefillcolor="1" isinstance="0" xmi.id="fl5rB87FkQwk" decon="0" localid="x9XcvkAKq6Xd" multipleinstance="0" drawasactor="1" usesdiagramusefillcolor="0" font="Sans,10,-1,5,50,0,1,0,0,0" linecolor="#ff0000" />
+         <objectwidget usesdiagramfillcolor="0" width="50" x="675" fillcolor="#ffffc0" y="48" instancename="" linewidth="none" height="28" usefillcolor="1" isinstance="0" xmi.id="cKz1phBCNQnG" decon="0" localid="w2btIxIF4qp0" multipleinstance="0" drawasactor="0" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,1,0,0,0" linecolor="#ff0000" />
+         <boxwidget usesdiagramfillcolor="1" width="289" x="336" fillcolor="none" y="23" linewidth="none" height="786" usefillcolor="1" isinstance="0" xmi.id="zKO5pzYmnIVj" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="#000000" />
+        </widgets>
+        <messages>
+         <messagewidget usesdiagramfillcolor="1" width="271" x="161" fillcolor="none" y="177" operation="new parcel" linewidth="none" widgetbid="x9XcvkAKq6Xd" height="8" usefillcolor="1" seqnum="1" textid="149rt7NsRlwE" widgetaid="HWb7yJwCxHOR" isinstance="0" xmi.id="LUAxZYtZ7lr4" sequencemessagetype="1001" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" >
+          <floatingtext usesdiagramfillcolor="1" width="95" x="166" fillcolor="none" y="155" linewidth="none" posttext="" role="704" height="22" usefillcolor="1" pretext="" isinstance="0" xmi.id="149rt7NsRlwE" text="1: new parcel" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
+         </messagewidget>
+         <messagewidget usesdiagramfillcolor="1" width="48" x="434" fillcolor="none" y="211" operation="check experiment exists" linewidth="none" widgetbid="x9XcvkAKq6Xd" height="32" usefillcolor="1" seqnum="2" textid="VJNdtiXGQNRK" widgetaid="x9XcvkAKq6Xd" isinstance="0" xmi.id="3u31RaRmNhkv" sequencemessagetype="1001" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" >
+          <floatingtext usesdiagramfillcolor="1" width="184" x="439" fillcolor="none" y="189" linewidth="none" posttext="" role="705" height="22" usefillcolor="1" pretext="" isinstance="0" xmi.id="VJNdtiXGQNRK" text="2: check experiment exists" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
+         </messagewidget>
+         <messagewidget usesdiagramfillcolor="1" width="48" x="434" fillcolor="none" y="280" operation="check parcel timestamp greater than experiment start timestamp" linewidth="none" widgetbid="x9XcvkAKq6Xd" height="32" usefillcolor="1" seqnum="3" textid="NfKlK4gpL3RE" widgetaid="x9XcvkAKq6Xd" isinstance="0" xmi.id="cSu4CFnG9pFa" sequencemessagetype="1001" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" >
+          <floatingtext usesdiagramfillcolor="1" width="453" x="439" fillcolor="none" y="258" linewidth="none" posttext="" role="705" height="22" usefillcolor="1" pretext="" isinstance="0" xmi.id="NfKlK4gpL3RE" text="3: check parcel timestamp greater than experiment start timestamp" usesdiagramusefillcolor="1" font="Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
+         </messagewidget>
+        </messages>
+        <associations/>
+       </diagram>
+      </diagrams>
+     </XMI.extension>
+    </UML:Model>
+    <UML:Model stereotype="folder" isSpecification="false" isLeaf="false" visibility="public" namespace="m1" xmi.id="Use Case View" isRoot="false" isAbstract="false" name="Use Case View" >
+     <UML:Namespace.ownedElement>
+      <UML:Association isSpecification="false" visibility="public" namespace="Use Case View" xmi.id="5Rug8P2nIZZJ" name="" >
+       <UML:Association.connection>
+        <UML:AssociationEnd isSpecification="false" visibility="public" changeability="changeable" isNavigable="true" xmi.id="F2N6hHatzcA9" aggregation="none" type="Qicc9UnMVAQC" name="" />
+        <UML:AssociationEnd isSpecification="false" visibility="public" changeability="changeable" isNavigable="true" xmi.id="F4EhQmfoMe8b" aggregation="none" type="Qicc9UnMVAQC" name="" />
+       </UML:Association.connection>
+      </UML:Association>
+      <UML:Dependency isSpecification="false" visibility="public" namespace="Use Case View" xmi.id="3SZLz8d8BBL8" client="Qicc9UnMVAQC" name="" supplier="Qicc9UnMVAQC" />
+     </UML:Namespace.ownedElement>
+    </UML:Model>
+    <UML:Model stereotype="folder" isSpecification="false" isLeaf="false" visibility="public" namespace="m1" xmi.id="Component View" isRoot="false" isAbstract="false" name="Component View" >
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+    <UML:Model stereotype="folder" isSpecification="false" isLeaf="false" visibility="public" namespace="m1" xmi.id="Deployment View" isRoot="false" isAbstract="false" name="Deployment View" >
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+    <UML:Model stereotype="folder" isSpecification="false" isLeaf="false" visibility="public" namespace="m1" xmi.id="Entity Relationship Model" isRoot="false" isAbstract="false" name="Entity Relationship Model" >
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+   </UML:Namespace.ownedElement>
+  </UML:Model>
+ </XMI.content>
+ <XMI.extensions xmi.extender="umbrello" >
+  <docsettings viewid="bh3pq3Auxv50" documentation="" uniqueid="nL6ebrCFOQhD" />
+  <listview>
+   <listitem open="1" type="800" label="Views" >
+    <listitem open="1" type="801" id="Logical View" >
+     <listitem open="0" type="810" id="Q6wDnQRFHp7J" label="ConsumerParcelHandling" />
+     <listitem open="0" type="810" id="bh3pq3Auxv50" label="OutOfSyncParcelHandling" />
+     <listitem open="1" type="813" id="gmyD4fBOgzux" />
+     <listitem open="1" type="813" id="GpwCsuKWfGjj" />
+     <listitem open="1" type="813" id="fl5rB87FkQwk" />
+     <listitem open="1" type="813" id="1cJxlCv11rBr" />
+     <listitem open="1" type="813" id="KTf5fa4ePGV9" />
+     <listitem open="1" type="813" id="cKz1phBCNQnG" />
+     <listitem open="1" type="813" id="uUjwGScuBilL" />
+     <listitem open="1" type="813" id="5cLh2ZA9H0gj" />
+     <listitem open="0" type="830" id="Datatypes" >
+      <listitem open="1" type="829" id="GJhOBUvuMlDy" />
+      <listitem open="1" type="829" id="yISTfsc1xlLz" />
+      <listitem open="1" type="829" id="GYTEHpBV6suH" />
+      <listitem open="1" type="829" id="O148WZxSrOvU" />
+      <listitem open="1" type="829" id="XlsrJcdp7mVV" />
+      <listitem open="1" type="829" id="F3L7PEZfk3rz" />
+      <listitem open="1" type="829" id="Np9haNexMi5s" />
+      <listitem open="1" type="829" id="07kBSfw7De7S" />
+      <listitem open="0" type="829" id="Qicc9UnMVAQC" />
+      <listitem open="1" type="829" id="q0VwtPCECLvn" />
+      <listitem open="1" type="829" id="Q9p9Ce80fbxY" />
+      <listitem open="1" type="829" id="gZi2HltVmCcB" />
+     </listitem>
+    </listitem>
+    <listitem open="1" type="802" id="Use Case View" />
+    <listitem open="1" type="821" id="Component View" />
+    <listitem open="1" type="827" id="Deployment View" />
+    <listitem open="1" type="836" id="Entity Relationship Model" />
+   </listitem>
+  </listview>
+  <codegeneration>
+   <codegenerator language="C++" />
+  </codegeneration>
+ </XMI.extensions>
+</XMI>
