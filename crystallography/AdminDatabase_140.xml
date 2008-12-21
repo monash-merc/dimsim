@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<CORE_DB:OADMIN_DB xmlns:CORE_DB="http://www.rigakumsc.com/Hobbit"
+ HoType="HO_R_OBJECT" objID="Obj1" name="AdminDatabase_140" version="3" mtype="1" otype="10">
+  <iMinorVersion HoType="HO_SHORT">1</iMinorVersion>
+  <lUsers HoType="HO_O_LIST">
+    <OUSERS HoType="HO_N_OBJECT" objID="Obj63" name="Monash" version="0" mtype="1" otype="13">
+      <iUserID HoType="HO_INT">0</iUserID>
+      <sDescription HoType="HO_S_REF">Monash</sDescription>
+      <sUserPassword HoType="HO_S_REF">temp</sUserPassword>
+      <iDefLanguage HoType="HO_INT">10</iDefLanguage>
+      <lDirectories HoType="HO_O_LIST">
+        <ODIRECTORIES HoType="HO_N_OBJECT" objID="Obj67" name="User Data Directory" version="0" mtype="1" otype="18">
+          <iFlag HoType="HO_INT">0</iFlag>
+          <iResID HoType="HO_INT">6048</iResID>
+          <sPath HoType="HO_S_REF">/mnt/ctrlpc</sPath>
+        </ODIRECTORIES>
+        <ODIRECTORIES HoType="HO_N_OBJECT" objID="Obj68" name="ScriptDir" version="0" mtype="1" otype="18">
+          <iFlag HoType="HO_INT">0</iFlag>
+          <iResID HoType="HO_INT">6078</iResID>
+          <sPath HoType="HO_S_REF">/mnt/ctrlpcscripts</sPath>
+        </ODIRECTORIES>
+      </lDirectories>
+    </OUSERS>
+  </lUsers>
+</CORE_DB:OADMIN_DB>
