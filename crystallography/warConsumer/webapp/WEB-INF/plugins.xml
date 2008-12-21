@@ -37,8 +37,8 @@
         scope="prototype">
         <property name="srbHost" value="iguazu.its.monash.edu.au"/>
         <!--property name="srbPort" value="5544"/-->
-        <property name="srbUsername" value="dimsim"/>
-        <property name="srbPassword" value="m3rcs1m"/>
+        <property name="srbUsername" value="****"/>
+        <property name="srbPassword" value="****"/>
         <property name="srbMDASDomain" value="merc"/>
         <property name="srbMDASZone" value="merczone"/>
         <property name="srbDefaultResource" value="iguazuDisk"/>
