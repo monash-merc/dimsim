@@ -79,12 +79,14 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-    'portal.portal'
+    'portal'
 )
 
 # TESTING
 APPEND_SLASH=False
-
+#SENSOR Variables
+TEMPERATURE_URL="http://jainis.med.monash.edu.au/labjack/temperature"
+HUMIDITY_URL="http://jainis.med.monash.edu.au/labjack/humidity"
 #Portal Variables
 CRYSTALCAM_URL= "http://jainis.med.monash.edu.au:8003"
 DIMSIM_HOST_URL= "http://localhost:8080/Cima_Webapp"

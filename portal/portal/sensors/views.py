@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from urllib2 import URLError, urlopen
+from settings import TEMPERATURE_URL
+from settings import HUMIDITY_URL
 import time
 
 SENSOR_HISTORY_LENGTH = 30
@@ -88,10 +90,14 @@ class SizedQueue(list):
 
 past_data = {}
 def get_latest_data():
+	global TEMPERATURE_URL
+	global HUMIDITY_URL
 	"""Obtains up-to-date sampled data."""
 #	sens = ({"name": 'Temperature','url': 'http://jainis.med.monash.edu.au:8001/temperature',},{"name": 'Humidity','url': 'http://jainis.med.monash.edu.au:8001/humidity',})
-	fill('Temperature','http://jainis.med.monash.edu.au/labjack/temperature')
-	fill('Humidity','http://jainis.med.monash.edu.au/labjack/humidity')
+#	fill('Temperature','http://jainis.med.monash.edu.au/labjack/temperature')
+#	fill('Humidity','http://jainis.med.monash.edu.au/labjack/humidity')
+	fill('Temperature',TEMPERATURE_URL)
+	fill('Humidity',HUMIDITY_URL)
 
 
 def fill(name,url):
