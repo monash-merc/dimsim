@@ -2,3 +2,22 @@ This directory contains the django code that allows web access to the Labjack in
 It also requires the labjack C bindings
 
 To run python manage.py runserver 0.0.0.0:8001
+
+To bootstrap this website to a apache http server,
+1. Copy the labjack folder to /var/www/django-sites/archer.
+2. create a new file /etc/httpd/conf.d/labjack.conf
+3. Add the following lines
+<Location "/labjack">
+    SetHandler python-program
+    PythonHandler django.core.handlers.modpython
+    PythonPath "['/var/www/django-sites/archer/','/var/www/django-sites/archer/labjack','/usr/lib/python2.5/site-packages/django'] + sys.path"
+    SetEnv DJANGO_SETTINGS_MODULE labjack.settings
+    PythonOption django.root /labjack
+    PythonDebug On
+    PythonInterpreter labjack
+</Location>
+
+4. Restart httpd server and point your browser to URL
+   http://hostURL/labjack/temperature for temperature reading
+   http://hostURL/labjack/humidity for humidity reading
+
