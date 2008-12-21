@@ -1,8 +1,15 @@
 The plugins configured in this codebase is for Monash university's crystallography lab. 
+
 To generate CIMA producer instance , cd warSource and run ./pack.sh
+
 To generate CIMA consumer instance, cd warConsumer and run ./pack.sh
+
 WAR files are generated in target folder and copied to wars folder at root level.
+
 Copy the war files and deploy them to your favourite servlet container.
 
 To run jetty, just use run command in warSource and warConsumer folders.
- 
+
+Please Note : 
+This project uses Maven for library management. Hence it important that Maven is installed attempting to generate war files. 
+All Dismim support libraries required for successful compilation can be found in the support-libs folder. If maven complains about a particular file not found, please download the same from support-lib folder and install it in your local maven repository by following the instructions provided by maven. 
