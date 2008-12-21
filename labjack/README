@@ -1,0 +1,4 @@
+This directory contains the django code that allows web access to the Labjack instrument. The code has been simplified as much as possible, but it depends on having the django web server installed.
+It also requires the labjack C bindings
+
+To run python manage.py runserver 0.0.0.0:8001
