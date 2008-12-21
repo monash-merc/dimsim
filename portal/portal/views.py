@@ -7,22 +7,26 @@ from elementtree import ElementTree as ET
 import time
 
 from settings import MEDIA_URL
+from settings import DIMSIM_HOST_URL
+from settings import PORTAL_HOST_URL
+from settings import CRYSTALCAM_URL
+from settings import SOURCE_ID
+from settings import SOURCEBuffer_ID
 #from portal.models import ImagePortlet
 from portal.soap.SOAPTransportService_services import *
 
 from os.path import split
-
-DIMSIM_HOST_URL= "http://localhost:8080/Cima_Webapp"
-PORTAL_HOST_URL= "http://localhost/portal"
-#PORTAL_HOST_URL= "http://localhost:18080"
+#CRYSTALCAM_URL= "http://jainis.med.monash.edu.au:8003"
+#DIMSIM_HOST_URL= "http://localhost:8080/Cima_Webapp"
+#PORTAL_HOST_URL= "http://localhost/portal"
+#SOURCE_ID = "Rigaku_Monash"
+#SOURCEBuffer_ID = "Buffer_Plugin"
 SESSION_ID = ""
 BufferSESSION_ID = ""
 PORTAL_ID = "Cima_Portal"
 UNKNOWN = "Unknown"
 PROJECT_NAME = UNKNOWN
 SAMPLE_NAME = UNKNOWN
-SOURCE_ID = "Rigaku_Monash"
-SOURCEBuffer_ID = "Buffer_Plugin"
 COUNT = 0
 
 # the parcel sequence id - not really used in CIMA yet
@@ -51,13 +55,15 @@ NS_DICT = {
 #the Django admin tool.
 
 def portal(request):
+    global MEDIA_URL 
+    global CRYSTALCAM_URL
 #Subscribe to Dimsim/Cima
     subscribe(request)
 
     variables = {}
     variables["MEDIA_URL"] = MEDIA_URL    
     variables["webcams"] = [{'name':'CrystalCam', 
-		'url':'http://jainis.med.monash.edu.au:8003', 
+		'url':CRYSTALCAM_URL, 
 		'refresh_time':'10',}]
 
     return render_to_response('portal.html', variables)

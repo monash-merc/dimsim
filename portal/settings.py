@@ -85,3 +85,10 @@ INSTALLED_APPS = (
 # TESTING
 APPEND_SLASH=False
 
+#Portal Variables
+CRYSTALCAM_URL= "http://jainis.med.monash.edu.au:8003"
+DIMSIM_HOST_URL= "http://localhost:8080/Cima_Webapp"
+PORTAL_HOST_URL= "http://localhost/portal"
+#DIMSIM Source plug-in IDs
+SOURCE_ID = "Rigaku_Monash"
+SOURCEBuffer_ID = "Buffer_Plugin"
