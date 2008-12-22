@@ -8,6 +8,7 @@
    ln -s /etc/init.d/tomcat /etc/rc5.d/S99tomcat
 3. Download portal from trunk/portal and copy to /var/www/django-sites/archer/portal folder
 4. Download labjack from trunk/labjack and copy to /var/www/django-sites/archer/labjack folder
+4.1 Download liblabjack.so from trunk/support-libs folder and copy to /usr/local/lib
 5. Download tomcat instance (preferred version tomcat 6.0.16, but should work with other versions as well) and install tomcat at /opt/tomcat
 6. create a symlink for latest jpeg image as follows
    ln -s /opt/tomcat/temp/latestCrystallography.jpg /var/www/django-sites/archer/portal/media/images
