@@ -1,0 +1,27 @@
+1. Copy trunk/support-config/dimsim-portal.conf to /etc/httpd/conf.d/
+2. Copy trunk/support-config/tomcat to /etc/init.d
+   Create the following symlinks
+   ln -s /etc/init.d/tomcat /etc/rc1.d/K99tomcat
+   ln -s /etc/init.d/tomcat /etc/rc2.d/S99tomcat
+   ln -s /etc/init.d/tomcat /etc/rc3.d/S99tomcat
+   ln -s /etc/init.d/tomcat /etc/rc4.d/S99tomcat
+   ln -s /etc/init.d/tomcat /etc/rc5.d/S99tomcat
+3. Download portal from trunk/portal and copy to /var/www/django-sites/archer/portal folder
+4. Download labjack from trunk/labjack and copy to /var/www/django-sites/archer/labjack folder
+5. Download tomcat instance (preferred version tomcat 6.0.16, but should work with other versions as well) and install tomcat at /opt/tomcat
+6. create a symlink for latest jpeg image as follows
+   ln -s /opt/tomcat/temp/latestCrystallography.jpg /var/www/django-sites/archer/portal/media/images
+7. Download trunk/crystallography folder from svn. 
+7.1 Make sure SRB connection details are properly configured in warConsumer/webapp/WEB-INF/plugins.xml file.
+7.2 Create a SRB folder called ErrorRecords for Dimsim to store error records. The location of this folder is the default dir/location for the user based on the SRB configuration input. The best way is to do a Sinit and then create a folder called ErrorRecords without changing to other folders
+8. Follow the instructions in Readme file of crystallography folder to generate source and consumer war files.
+9. If maven throws error stating some files not found, search for these files in trunk/support-libs folder of the google repository for dimsim. Download the required files and install them to local maven repository using install instructions provided by  maven error report.
+10 copy war files from warSource/target and warConsumer/target to /opt/tomcat/webapp folder
+11. Clean-up /opt/tomcat/logs/catalina.out to start a new log
+12. Start tomcat by running sudo /sbin/service tomcat start
+13. Start portal ad labjack by starting apache httpd using command sudo /sbin/service httpd start
+14. View portal by opening a browser and point url to http://hostname/portal
+15. If portal is not visible or partially visible, check log files for tomcat and apache(apache is not much help becasue of django)
+16 To test data capture to XDMS staging area, copy few  OSC files to /mnt/ctrlpc/Images folder and then check SRB.
+17. Project and Sample name is determined by data in /mnt/ctrlpcscripts/SessionScript.scp file. In production, make sure the SessionScript.scp file and Images folder are correctly connected to windows share  
+18. If all goes well, the application is now setup and will continue to collect data to XDMS staging area.
