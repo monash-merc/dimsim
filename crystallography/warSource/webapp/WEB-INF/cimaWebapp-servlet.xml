@@ -22,10 +22,15 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 		<property name="suffix"><value>.jsp</value></property>
 	</bean>
 
+	<bean id="projInfoController"
+		class="au.edu.archer.dimsim.plugins.projInfoController" >
+		<property name="producerOfInterest" value="Rigaku_Monash"/>
+		<property name="eventListener" ref="ParcelBufferedEventListener"/>
+	</bean>
+
 	<bean id="memController"
 		class="org.instrumentmiddleware.cima.ws.memController" >
 	</bean>
-
 	<bean id="subCountController"
 		class="org.instrumentmiddleware.cima.ws.SubscriptionCountController" >
 	</bean>
@@ -49,6 +54,7 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<props>
+				<prop key="/projinfo.htm">projInfoController</prop>
 				<prop key="/sub.htm">subCountController</prop>
 				<prop key="/mem.htm">memController</prop>
 			</props>

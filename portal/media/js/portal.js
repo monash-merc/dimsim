@@ -1,23 +1,3 @@
-/**Creates the page, taking in a configuration that can be dynamically set.
-The configuration options take the form:
-<code>
-config = {
-	webcams: [
-		{
-			name: <name of webcam 1>
-			url: <externally accessible url>
-			refresh: <time in milliseconds between image updates, -1= never refresh. MotionJPG feeds should have refresh:-1
-		},
-		{
-			name: <name of webcam 2...
-		...}
-	]
-	sensorGraph: <url to an html snippet that displays sensor data>
-}
-</code>
-@constructor
-@param {Map<String,String>} config A set of options to configure the page.
-*/
 var PortalPage = function(config) {
 	this.config = config;
 	this.init(this);

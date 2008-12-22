@@ -10,7 +10,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'sqlite3'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'db'             # Or path to database file if using sqlite3.
+DATABASE_NAME = '/var/www/django-sites/archer/portal/db'             # Or path to database file if using sqlite3.
 DATABASE_USER = ''             # Not used with sqlite3.
 DATABASE_PASSWORD = ''         # Not used with sqlite3.
 DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
@@ -21,7 +21,7 @@ DATABASE_PORT = ''             # Set to empty string for default. Not used with 
 # although not all choices may be available on all operating systems.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'Australia/Melbourne'
+TIME_ZONE = 'America/Chicago'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -35,7 +35,7 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = 'media/'
+MEDIA_ROOT = '/var/www/django-sites/archer/portal/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -64,14 +64,15 @@ MIDDLEWARE_CLASSES = (
 )
 
 SESSION_ENGINE='django.contrib.sessions.backends.file'
+#SESSION_FILE_PATH='/var/www/django-sites/archer/portal/'
 
-ROOT_URLCONF = 'urls'
+ROOT_URLCONF = 'portal.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-   'templates'
+   '/var/www/django-sites/archer/portal/templates'
 )
 
 INSTALLED_APPS = (
@@ -79,7 +80,8 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-    'portal'
+    'portal.portal',
+    'portal',
 )
 
 # TESTING
@@ -89,8 +91,5 @@ TEMPERATURE_URL="http://jainis.med.monash.edu.au/labjack/temperature"
 HUMIDITY_URL="http://jainis.med.monash.edu.au/labjack/humidity"
 #Portal Variables
 CRYSTALCAM_URL= "http://jainis.med.monash.edu.au:8003"
-DIMSIM_HOST_URL= "http://localhost:8080/Cima_Webapp"
-PORTAL_HOST_URL= "http://localhost/portal"
-#DIMSIM Source plug-in IDs
-SOURCE_ID = "Rigaku_Monash"
-SOURCEBuffer_ID = "Buffer_Plugin"
+PROJINFO_URL=  "http://jainis.med.monash.edu.au/tomcat/Cima_Webapp/projinfo.htm"
+#Note: For the above URL to work properly, Apache ProxyPass must be enabled
