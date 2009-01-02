@@ -71,7 +71,7 @@ PortalPage.prototype = {
 		var sensorReadingsPanel = new Ext.ux.Portlet({
 			xtype: 'portlet',
 			id: 'sensor-readings',
-			title: 'Sensor Readings',
+			title: 'Graph - Sensor Readings',
 			collapsible: true,
 			titleCollapse: false,
 			height: 'auto',
