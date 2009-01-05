@@ -28,6 +28,7 @@ import edu.sdsc.grid.io.srb.SRBFile;
 public class SRBConfig {
 	public String srbHost = null;
 	public int srbPort = 5544;
+	public String srbHome = null;
 	public String srbUsername = null;
 	public String srbPassword = null;
 	public String srbMDASDomain = null;
@@ -40,6 +41,16 @@ public class SRBConfig {
 		(srbMDASZone != null) && (srbMDASDomain != null) &&
 		(srbDefaultResource != null) &&
 		((srbUsername != null) || (usingX509 == true));
+	}
+
+
+	public String getSrbHome() {
+		return srbHome;
+	}
+
+
+	public void setSrbHome(String srbHome) {
+		this.srbHome = srbHome;
 	}
 
 

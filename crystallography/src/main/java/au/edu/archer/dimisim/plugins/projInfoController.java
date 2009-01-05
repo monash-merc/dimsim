@@ -82,7 +82,11 @@ public class projInfoController implements Controller, IBufferEventListener {
 				count = 0;
 			} else return;
 			
-			lastupdate = new Date(c.getTimeInMillis()).toString();
+			try {
+				lastupdate = new Date(c.getTimeInMillis()).toString();
+			} catch (Exception ex) {
+				lastupdate = new Date(System.currentTimeMillis()).toString();
+			}
 		}
 	}
 }

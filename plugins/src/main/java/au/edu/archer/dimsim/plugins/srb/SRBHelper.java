@@ -137,14 +137,32 @@ public class SRBHelper {
 	}
 
 
+	public String getSRBHome() 
+	        throws IOException {
+	
+		if (srbConfig.getSrbHome() != null) {
+			return srbConfig.getSrbHome(); 
+		}
+	
+		return getSRBFileSystem().getHomeDirectory();
+	}
+
 	public SRBFile getSRBFile(String path)
 	        throws IOException {
 		SRBFileSystem fs = getSRBFileSystem();
-		String basePath = path.startsWith(fs.getHomeDirectory()) ? ""
+	/*	String basePath = path.startsWith(fs.getHomeDirectory()) ? ""
 			                                                     : (fs.getHomeDirectory() +
 			"/");
-
-		return new SRBFile(fs, basePath + path);
+          */   
+	/*	String basePath = "";
+		if (srbConfig.getSrbHome() != null) {
+                   if (!path.startsWith(srbConfig.getSrbHome())) {
+			     basePath = srbConfig.getSrbHome() + "/";
+		   }
+                }
+		System.out.println("basepath is " + basePath + " & path is " + path);
+	*/	
+		return new SRBFile(fs, path);
 	}
 
 

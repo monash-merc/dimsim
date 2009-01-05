@@ -98,7 +98,7 @@ public class CrystalSRBConsumer
 		} else {
 			srbHelperErrorRecords = srbHelperValidRecords;
 		}
-		errorRoot = srbHelperErrorRecords.getSRBFile("ErrorRecords");
+		errorRoot = srbHelperErrorRecords.getSRBFile(srbHelperErrorRecords.getSRBHome() + "/" +"ErrorRecords");
 	}
 	
 	public synchronized ResponseType processParcel(BodyType body,
@@ -142,7 +142,7 @@ public class CrystalSRBConsumer
 		String timeStamp = creationTime.toString();
 
 		try {
-			SRBFile newExperimentRoot = srbHelperValidRecords.getSRBFile(lab + "/" + instrument +
+			SRBFile newExperimentRoot = srbHelperValidRecords.getSRBFile(srbHelperValidRecords.getSRBHome() + "/" + lab + "/" + instrument +
 			    "/" + sampleName + "_" + timeStamp);
 	
 			log.debug("experiment root calculated is " + experimentRoot);
