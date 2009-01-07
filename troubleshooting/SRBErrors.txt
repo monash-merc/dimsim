@@ -1,0 +1,9 @@
+1. Caused by: java.lang.NullPointerException
+    at edu.sdsc.grid.io.srb.SRBAccount.getVersionNumber(SRBAccount.java:846)
+    at edu.sdsc.grid.io.srb.SRBCommands.sendUserInfo(SRBCommands.java:652)
+    at edu.sdsc.grid.io.srb.SRBCommands.connect(SRBCommands.java:522)
+    at edu.sdsc.grid.io.srb.SRBFileSystem.<init>(SRBFileSystem.java:326)
+
+    Check Jargon version in the war file, this must be atleast 2.0.2
+    If the incorrect version is due to JCU's chitter chatter (ver 0.2). Then fix this by modifying the Jargon version in pom file for chitter chatter. This can be found in your local maven repository at.
+	~/.m2/repository/au/edu/jcu/hpc/ChitterChatter/0.2/

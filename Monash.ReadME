@@ -1,4 +1,6 @@
-1. Copy trunk/support-config/dimsim-portal.conf to /etc/httpd/conf.d/
+1. 
+  1.1 Download and install Django. Use Option 1 mentioned at http://www.djangoproject.com/download/
+  1.2 Copy trunk/support-config/dimsim-portal.conf to /etc/httpd/conf.d/
 2. Copy trunk/support-config/tomcat to /etc/init.d
    Create the following symlinks
    ln -s /etc/init.d/tomcat /etc/rc1.d/K99tomcat
