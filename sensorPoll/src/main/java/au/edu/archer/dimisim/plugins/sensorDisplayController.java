@@ -1,6 +1,26 @@
 /**
- * 
- */
+*
+* * Copyright (C) 2007-2009, Monash University
+* *
+* * This program was developed as part of the ARCHER project
+* * (Australian Research Enabling Environment) funded by a   
+* * Systemic Infrastructure Initiative (SII) grant and supported by the Australian
+* * Department of Innovation, Industry, Science and Research
+* *
+* * This program is free software: you can redistribute it and/or modify
+* * it under the terms of the GNU General Public  License as published by the
+* * Free Software Foundation, either version 3 of the License, or
+* * (at your option) any later version.
+* *
+* * This program is distributed in the hope that it will be useful,
+* * but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+* * or FITNESS FOR A PARTICULAR PURPOSE.  
+* * See the GNU General Public License for more details.
+* *
+* * You should have received a copy of the GNU General Public License
+* * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+* */
+
 package au.edu.archer.dimsim.plugins;
 
 import java.io.BufferedReader;
@@ -26,7 +46,9 @@ import org.springframework.web.servlet.mvc.Controller;
 /**
  * @author Rafi M Feroze
  * Polls labjack and stores sensor data. When queried this controller returns agoogle chart api url
- * Default data returned is for minutes. To get a graph by hour, use query parameter "type=hour" in the url
+ * Default data returned is for minutes. 
+ * To get a graph by hour, use query parameter "type=hour" in the url
+ * To get a current sensor data as html, use query parameter "type=current" in the url
  */
 public class sensorDisplayController implements Controller {
 	private String sensorBaseURL;
