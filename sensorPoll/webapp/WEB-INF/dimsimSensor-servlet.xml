@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<!-- import some plugins -->
+	<import resource="plugins.xml"/>
+
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"><value>org.springframework.web.servlet.view.JstlView</value></property>
+		<property name="prefix"><value>/WEB-INF/jsp/</value></property>
+		<property name="suffix"><value>.jsp</value></property>
+	</bean>
+
+	<bean id="sensorGraphController"
+		class="au.edu.archer.dimsim.plugins.sensorDisplayController" >
+		<property name="maxSize" value="30"/>
+		<property name="sensorBaseURL" value="http://jainis.med.monash.edu.au/labjack"/>
+	</bean>
+
+	<bean id="urlMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/sensor.htm">sensorGraphController</prop>
+			</props>
+		</property>
+	</bean>
+	
+</beans>
+

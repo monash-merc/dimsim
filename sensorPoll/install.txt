@@ -1,0 +1,9 @@
+1. Ensure that the URL to fetch sensor data (labjack or other source) is properly defined in webapp/WEB-INF/dimsimSensor-servlet.xml - parameter sensorBaseURL for bean SensorGraphController
+
+2. run ./pack.sh to generate war file
+
+3. copy target/Dimsim_Sensor.war to your tomcat webapp folder (i.e.,
+/opt/tomcat/webapps)
+
+4. Test deployment. Read readme.txt to find out the application urls
+

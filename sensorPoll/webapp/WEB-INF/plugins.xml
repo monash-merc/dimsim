@@ -1,0 +1,26 @@
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+        <bean id="checkSensor" class="org.springframework.scheduling.timer.MethodInvokingTimerTaskFactoryBean">
+                <property name="targetObject" ref="sensorGraphController" />
+                <property name="targetMethod" value="pollSensor" />
+        </bean>
+
+        <bean id="scheduledTask" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+        <!-- wait 10 seconds before starting repeated execution -->
+                <property name="delay" value="10000" />
+        <!-- run every 1/2 min  -->
+                <property name="period" value="30000" />
+                <property name="timerTask" ref="checkSensor" />
+        </bean>
+
+        <bean id="timerFactory" class="org.springframework.scheduling.timer.TimerFactoryBean">
+                <property name="scheduledTimerTasks">
+                        <list>
+                                <ref bean="scheduledTask" />
+                        </list>
+                </property>
+        </bean>
+</beans>	
